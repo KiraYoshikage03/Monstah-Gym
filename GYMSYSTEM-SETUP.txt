@@ -1,0 +1,50 @@
+- OPEN CMD
+
+- Set directory
+example: Doffy/Documents/programming-files/python
+
+- Create a folder for the project
+example: sia-system
+= cd sia-system
+
+- Inside the folder sia-system copy the gym-system foder 
+
+- Install virtualenv if there is none
+= pip install virtualenv  
+
+- Create Virtual Environment
+= python -m venv env
+
+- There should be two folders after this which named, env and gym-system
+
+- Enter Virtual Environment
+= activate
+
+- Change directory to the gymsystem folder
+= cd gymsystem
+
+- Install dependencies
+= pip install -r requirements.txt
+
+- Open xampp in administrator mode then create database in phpmyadmin or heidisql. example: DB_NAME = gymdatabase
+
+- In cmd
+- Make Migrations
+= python manage.py makemigrations
+
+- Migrate
+= python manage.py migrate
+
+- Create superuser
+= python manage.py createsuperuser
+-Fill out all the needed information to create the superuser
+
+- Run server
+= python manage.py runserver
+
+- Open in browser http://127.0.0.1:8000/
+
+- DONE
+
+
+
