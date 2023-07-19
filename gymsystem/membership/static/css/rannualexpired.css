@@ -1,0 +1,129 @@
+/* CSS for rannualexpired.html */
+/* CSS for rmonthlyexpired.html */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100vh;
+    
+    background: #023020;
+    background: -webkit-radial-gradient(circle, #023020 0%, #072014 50%, #070b34 100%);
+    background: radial-gradient(circle, #023020 0%, #072014 50%, #070b34 100%);
+}
+
+
+
+.payment_pic_container img {
+    object-fit: cover;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+   
+    border-radius: 10%;
+    
+    -webkit-box-shadow: 3px 3px 4px 4px #1f4207;
+    -moz-box-shadow: 3px 3px 4px 4px #1f4207;
+    box-shadow: 3px 3px 4px 4px #1f4207;
+    
+}
+
+.payment_pic_container {
+    grid-column: 1 / 2;
+    display: grid;
+    align-items: first baseline;
+    justify-content: center;
+    align-items: baseline;
+}
+
+
+.instructions_container {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.instructions_container .instructions_header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: 'Kanit', sans-serif;
+    color: #051108;
+}
+
+.instructions_container .instructions_header h3 {
+    font-size: 4rem;
+    color: #e7ebe8;
+    line-height: 1;
+    
+}
+
+.instructions_container .instructions_header h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #59755f;
+    padding-top: 0.3rem;
+}
+
+.instructions_container .instructions_header h5 {
+    font-weight: 400;
+    color: #718876;
+}
+
+.instructions_container .instructions_header h6 {
+    font-size: 2rem;
+    font-weight: 200;
+    color: #c4d38b;
+    padding-top: 1rem;
+}
+
+.buttons_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5;
+}
+
+.buttons_container input {
+    margin: 0.3rem 0 1rem 0;
+    color: #718876;
+    background: #c4d38b;
+}
+
+.buttons_container .btn {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.6rem;
+    background: #c4d38b;
+    width: 6rem;
+    color: #2a4d31;
+}
+
+.buttons_container .btn:hover {
+    background: rgb(202, 209, 172);
+    cursor: pointer;    
+}
+
+.buttons_container .btn2:hover {
+    background: rgb(202, 209, 172);
+    cursor: pointer;
+}
+
+.buttons_container .btn2 {
+    margin: 0 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.6rem;
+    background: #c4d38b;
+    width: 6rem;
+}
+
+.buttons_container .btn2 a{
+    text-decoration: none;
+    color: #2a4d31;
+}
+

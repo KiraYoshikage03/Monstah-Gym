@@ -1,0 +1,199 @@
+/* CSS for signup.html */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0C1A1A;
+}
+
+.mini_container {
+  background-color: transparent;
+  box-shadow: 3px 3px 10px rgba(0,0,0,1),
+  -1px -1px 6px rgba(255, 255, 255, 0.4);
+  width: 40%;
+  padding: 1.4% 4%;
+}
+
+.main_container .mini_container .create_text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+.form_quote_container{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #CFCFD1;
+}
+
+.gym_quote {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+/* Style for textbox */
+.inputGroup {
+  position: relative;
+  margin-top: 0.5em;
+}
+
+.inputGroup input {
+  width: 100%;
+  font-size: 1rem;
+  background-color: transparent;
+  color: #CFCFD1;
+  padding: 0.8em;
+  outline: none;
+  border: 1px solid rgb(200, 200, 200);
+
+}
+
+.inputGroup label {
+  font-size: 0.8em;
+  position: absolute;
+  left: 0;
+  padding: 0.8em;
+  margin: 0.4em 0.4em;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  color: #7D9093;
+}
+
+.inputGroup :is(input:focus, input:valid)~label {
+  transform: translateY(-50%) scale(.9);
+  margin-left: 1.3em;
+  padding: 0.4em;
+  background-color: #0C1A1A;
+}
+
+.inputGroup :is(input:focus, input:valid) {
+  border-color: rgb(150, 150, 150);
+}
+
+/* Style for sign-in and sign-up button */
+.sign_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.sign_button {
+  width: 33%;
+  background-color: transparent;
+  border: 2px solid #7D9093;
+  border-radius: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.6em;
+  letter-spacing: 0.05em;
+  margin: 1em 0 1em 0;
+  outline: none;
+  overflow: visible;
+  padding: 1.25em 2em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: nonesign_up_buttonansition all 0.3s ease-in-out;
+  user-select: none;
+ }
+ 
+.sign_button::before {
+content: " ";
+width: 1.5625rem;
+height: 2px;
+background: #CFCFD1;
+top: 50%;
+left: 1em;
+position: absolute;
+transform: translateY(-50%);
+transform-origin: center;
+transition: 0.3s linear, width 0.3s linear;
+}
+
+.sign_button .text {
+font-size: 1.125em;
+line-height: 1.33333em;
+padding-left: 2em;
+display: block;
+text-align: left;
+transition: all 0.3s ease-in-out;
+text-transform: uppercase;
+text-decoration: none;
+color: #e8e8e8;
+}
+
+.sign_button .top-key {
+height: 2px;
+width: 1.5625rem;
+top: -2px;
+left: 0.625rem;
+position: absolute;
+background: #e8e8e8;
+transition: width 0.5s ease-out, left 0.3s ease-out;
+}
+
+.sign_button .bottom-key-1 {
+height: 2px;
+width: 1.5625rem;
+right: 1.875rem;
+bottom: -2px;
+position: absolute;
+background: #e8e8e8;
+transition: width 0.5s ease-out, right 0.3s ease-out;
+}
+
+.sign_button .bottom-key-2 {
+height: 2px;
+width: 0.625rem;
+right: 0.625rem;
+bottom: -2px;
+position: absolute;
+background: #e8e8e8;
+transition: width 0.5s ease-out, right 0.3s ease-out;
+}
+
+.sign_button:hover {
+color: white;
+background: #053430;
+}
+
+.sign_button:hover::before {
+width: 0.9375rem;
+background: white;
+}
+
+.sign_button:hover .text {
+color: white;
+padding-left: 1.5em;
+}
+
+.sign_button:hover .top-key {
+  left: -2px;
+  width: 0px;
+}
+
+.sign_button:hover .bottom-key-1,
+.sign_button:hover .bottom-key-2 {
+  right: 0;
+  width: 0;
+}
+
+.account_reminder {
+  display: flex;
+  justify-content: end;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8em;
+  color: #CFCFD1;
+}

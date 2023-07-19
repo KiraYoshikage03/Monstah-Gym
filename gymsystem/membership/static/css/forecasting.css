@@ -1,0 +1,49 @@
+/* CSS for forecasting.html */
+
+table thead{
+    color: white;
+}
+
+table {
+    background-color: rgb(28,28,30);
+}
+
+h2 {
+    color: white;
+}
+
+form label {
+    color: white;
+}
+
+#year-select {
+    padding: 0.3rem 0.5rem;
+    background: rgb(43, 46, 34);
+    color: rgb(170, 179, 147);
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+}
+
+.submit-year {
+    padding: 0.3rem 0.8rem;
+    background: rgb(43, 46, 34);
+    color: rgb(139, 164, 76);
+    border-radius: 8px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+}
+
+.submit-year:hover {
+    cursor: pointer;
+}
+
+p {
+    color: white;
+}

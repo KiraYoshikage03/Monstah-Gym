@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- user page - admin landing -->
+        <title>Admin</title>
+
+        <!-- External CSS -->
+        <link rel="stylesheet" href="../../static/css/adminpage.css">  
+        <link rel="stylesheet" href="../../static/css/usersedit.css">
+
+        <!-- Fonts (Google)-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+
+        <!-- Icons (Font Awesome) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+        <!-- Icons (Boxicon) -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    </head>
+
+    <body>
+
+        <!-- di ko sure how this work so i opted to make it a comment muna -->
+        {% if request.user.is_authenticated %}
+        <!--<div id="content", name="content">      = ito yung naka wrap sa buong content -->
+
+            <!-- HEADER -->
+            <header class="header">
+
+                <div class="logo">
+                    <a href="/adminpage"><img src="../../static/files/monster-logo.png" alt="logo">Admin</a>
+                    <form method="post" action="{% url 'membershipsearch' %}">
+                        {% csrf_token %}
+                        <div class="search_box">
+                            <input type="search" name="search" placeholder="Search Unique ID or Name">
+                            <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="header-icons">
+                    <div class="account">
+                    <h4>{{user.user_name}}</h4>
+                    </div>
+                </div>
+
+            </header>
+                
+
+            <!-- LEFT SIDEBAR (categories) -->
+            <section class="L-sidebar">
+                <nav class="L-sidebar-nav">
+                    <span>Dashboard</span>
+                            <a href="/adminpage" class="active"><i class='bx bx-user'></i>Users</a>
+                            <a href="/membership"><i class='bx bx-crown' ></i>Membership</a>
+                            <a href="/forecasting"><i class='bx bx-bar-chart-alt'></i>Forecasting</a>
+                            <a href="/signout"><i class='bx bx-log-out'></i>Signout</a>
+                </nav>
+            </section>
+
+            <!-- RIGHT SIDBAR (newly created user) -->
+            <section class="R-sidebar">
+                <div class="R-sidebar-user">
+                    <h4>New Created User</h4>
+                    {% for data in new_user %}
+
+                    <div class="balance">
+
+                    <!-- <i class="fas fa-user icon"></i> -->
+                    <div class="info">
+                        <h5>{{ data.user_name }}</h5>
+                        <span>{{ data.date_joined }}</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+            
+                </div>
+            </section>
+
+            <!-- MAIN BODY -->
+            <main class="main-body">
+
+                <!-- USERS -->
+                <div class="top-card">
+                    <div class="user-card">
+                        <h1>Welcome to Users</h1>
+			            <span>This is where the admin edit/delete the data of the users.</span> 
+                    </div>
+                    
+                </div>
+
+                <!-- ACCOUNTS -->
+                <div class="bottom-card">
+                    <h2>Account Edit</h2>
+
+                    <!-- <div class="acc-table"> -->
+						<table>
+							<form action="" method="post">
+								{% csrf_token %}
+							<thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Email</th>
+                                    <th>Username</th>
+                                    <th>Admin</th>
+                                    <th>Staff</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+							<tbody>
+								<tr>
+									<td><div class="form-group row">
+											<div class="row">
+												<input type="id" name="id" required value="{{users.id}}" readonly>
+											</div>
+										</div>
+									</td>
+									<td><div class="form-group row">
+											<div class="row">
+												<input type="email" name="email" required value="{{users.email}}">
+											</div>
+										</div>
+									</td>
+									<td><div class="form-group row">
+											<div class="row">
+												<input type="text" name="user_name" required value="{{users.user_name}}">
+											</div>
+										</div>
+									</td>
+									<td><div class="form-group row">
+											<div class="row">
+												<select id="is_superuser" name="is_superuser" required value="{{users.is_superuser}}">
+													<option value="False">False</option>
+													<option value="True">True</option>
+												</select>
+											</div>
+										</div>
+									</td>
+									<td><div class="form-group row">
+											<div class="row">
+												<select id="is_staff" name="is_staff" required value="{{users.is_staff}}">
+													<option value="False">False</option>
+													<option value="True">True</option>
+												</select>
+											</div>
+										</div>
+									</td>
+									<td><div class="form-group row">
+											<button type="submit" class="update">Update</button>
+											<button type="button" class="update"><a href="/adminpage"> Go Back</a></button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+							</form>
+						</table>
+						</tbody>
+                </div>
+                
+            </main>
+        <!-- </div> = endtag nung content div-->
+		{%  endif %}
+        <script src="../../static/js/useredit.js"></script>
+    </body>
+</html>

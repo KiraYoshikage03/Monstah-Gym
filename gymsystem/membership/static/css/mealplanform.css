@@ -1,0 +1,486 @@
+/* CSS for mealplanform.html */
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .grid_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas: 
+    "sidebar nav nav"
+    "sidebar main main"
+    "sidebar main main"
+    "sidebar main main";
+    /* background: #051108; */
+    grid-gap: 0 0;
+  }
+  
+    /* Style for sidebar */
+    
+    .sidebar_container {
+      grid-area: sidebar;
+      position: fixed;
+      height: 100vh;
+      width: 5rem;
+      background: #12171e;
+      padding: .4rem 0;
+      transition: all 0.5s ease;
+      z-index: 50;
+      }
+      
+      .sidebar_container.active ~ .home_container {
+      left: 15.625rem;
+      width: calc(100% - 15.625rem);
+      }
+      
+      .sidebar_container.active {
+      width: 15.625rem;
+      }
+      
+      .sidebar_container #btn {
+      position: absolute;
+      color: #fff;
+      top: .4rem;
+      left: 50%;
+      font-size: 1.2rem;
+      line-height: 50px;
+      transform: translateX(-50%);
+      cursor: pointer;
+      }
+      
+      .sidebar_container.active #btn {
+      left: 90%;
+      }
+      
+      .sidebar_container .top_container .top_logo_container {
+      color: #fff;
+      display: flex;
+      height: 3.125rem;
+      width: 90%;
+      align-items: center;
+      pointer-events: none;
+      opacity: 0;
+      }
+      
+      .sidebar_container.active .top_container .top_logo_container {
+      opacity: 1;
+      }
+      
+      .sidebar_container.active .top_container .top_logo_container span {
+      font-family: 'Kanit', sans-serif;
+      font-size: 1rem;
+      }
+      
+      .sidebar_container.active .top_container .top_logo_container img {
+      width: 3.125rem;
+      margin-left: 1rem;
+      }
+      
+      .top_container .top_logo_container i {
+      font-size: 2rem;
+      margin-right: 0.313rem;
+      }
+      
+      .user_container {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+      }
+      
+      .sidebar_container .user_container .bx-user-pin{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 1rem;
+      color: #fff;
+      border-radius: 100%;
+      margin-left: 3.3rem;
+      }
+      
+      .user_container p {
+      font-family: 'Hind', sans-serif;
+      color: #fff;
+      opacity: 1;
+      margin: 0;
+      }
+      
+      .sidebar_container.active .user_container .bx-user-pin {
+      font-size: 5rem;
+      margin: 0;
+      } 
+      
+      /* .user_container img {
+      width: 4.5rem;
+      border-radius: 100%;
+      padding-left: 1rem;
+      } */
+      
+      .name_bold {
+      font-family: 'Hind', sans-serif;
+      font-weight: 600;
+      }
+      
+      .sidebar_container p {
+      opacity: 0;
+      }
+      
+      .sidebar_container.active p {
+      opacity: 1;
+      }
+      
+      .sidebar_container ul li {
+      position: relative;
+      list-style-type: none;
+      height: 3.125rem;
+      width: 90%;
+      margin: 0.8rem auto;
+      padding: 0;
+      line-height: 50px;
+      }
+      
+      .sidebar_container ul li a {
+      font-family: 'Hind', sans-serif;
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      border-radius: 0.7rem;
+      }
+      
+      .sidebar_container ul li i:hover {
+      background: #fff;
+      color: #12171e;
+      }
+      
+      .sidebar_container.active ul li a:hover {
+      background: #fff;
+      color: #12171e;
+      }
+      
+      .sidebar_container ul li a i {
+      min-width: 50px;
+      text-align: center;
+      height: 3.125rem;
+      border-radius: 12px;
+      line-height: 50px;
+      }
+      
+      .sidebar_container .sidebar_item {
+      display: none;
+      }
+      
+      .sidebar_container.active .sidebar_item{
+      display: inline;
+      }
+      
+      .sidebar_container ul li .tip {
+      position: absolute;
+      left: 9.5rem;
+      top: 50%;
+      width: 8rem;
+      font-family: 'Hind', sans-serif;
+      background-color: #c4d38b;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+      border-radius: 0.6rem;
+      padding: .4rem 1.2rem;
+      line-height: 1.8rem;
+      z-index: 20;
+      display: none;
+      }
+      
+      .sidebar_container ul li:hover .tip {
+      display: inline;
+      }
+      
+      .sidebar_container.active ul li .tip {
+      display: none;
+      }
+      
+      /*Over riding the padding-left of lists*/
+      
+      .sidebar_container ol, .sidebar_container ul {
+      padding-left: 0.5rem;
+      }
+      
+  /* Style for navigation */
+  
+  /* Style for navigation */
+    
+  .nav_container {
+    grid-area: nav;
+    background: #051108;
+  }
+  
+  
+  .nav_container ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 0 3rem;
+  }
+  
+  .nav_container li {
+    list-style-type: none;
+  }
+  
+  .nav_container li a {
+    display: flex;
+    position: relative;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #e8e8e8;
+    text-decoration: none;
+  }
+  
+  .nav_container li a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: #5E6C5E;
+    transform-origin: center;
+    transform: scaleX(0);
+    transition: transform .5s;
+  }
+  
+  .nav_container li a:hover::after{
+    transform-origin: center;
+    transform: scaleX(1);
+  }
+  
+  .nav_list_container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 0;
+  }
+  
+  nav {
+    padding-top: 1rem;
+    margin-right: 5rem;
+  }
+  
+  /* Main Content Section */
+  
+  .main_content {
+    grid-area: main;
+    grid-template-areas: 
+    "form cover cover"
+    "form cover cover"
+    "content content content"
+    "content content content"
+    "content content content"
+    "content content content"
+    "content content content"
+    "content content content"
+    "content content content";
+    grid-template-rows: repeat(9, 1fr);
+    background: #051108;
+  }
+  
+  .content1 {
+    grid-area: form;
+    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .content1_title {
+    grid-area: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .content1_title h2 {
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: #b8c3ba;
+  }
+  
+  .content1_title p {
+    font-family: 'Hind', sans-serif;
+    font-size: 1rem;
+    color: #59755f;
+  }
+  
+  
+  
+  /* Form Styling */
+  
+  .form_content {
+    flex-basis: 50%;
+    padding-left: 15rem;
+    margin-top: 2.8rem;
+  }
+  
+  .form_group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  label {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 300;
+    color: #fff;
+    margin-top: -0.5rem;
+  }
+  
+  input[type="number"],
+  select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+    width: 25rem;
+  }
+  
+  input[type="number"]:focus,
+  select:focus {
+    border-color: #4caf50;
+  }
+  
+  button[type="submit"],
+  button.btn2 {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #b7bf96;
+    color: rgb(27, 25, 25);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  button[type="submit"]:hover, button.btn2:hover{
+    background-color: #c4d38b;
+  }
+  
+  .btn2 a {
+    text-decoration: none;
+    color: rgb(27, 25, 25);
+  }
+  
+  .cover_content {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cover_content img {
+    object-fit: cover;
+    width: 80%;
+    height: 70%;
+  }
+  
+  /* Food Section */
+  
+  .content2 {
+    grid-area: content;
+    background: #051108;
+    padding-left: 15rem;
+    color: white;
+  }
+  
+  .content2 .download {
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    text-align: right;
+    background: #b7bf96;
+    color:rgb(27, 25, 25);
+    padding: 0.7rem;
+    border-radius: 8px;
+  }
+  
+  .content2 .download:hover {
+    color: #c4d38b;
+  }
+  
+  .day_container {
+    margin-bottom: 3rem;
+  }
+  
+  .day_container h2 {
+    font-family: 'Hind', sans-serif;
+  }
+  
+  .food_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 5rem;
+  }
+  
+  .foodies {
+    flex-basis: 27%;
+    background: #d7dbd8;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+  
+  .food-img_container {
+    position: relative;
+  }
+  
+  .food-time {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background-color: rgba(197, 197, 27, 0.832);
+    color: rgb(27, 25, 25);
+    padding: 0.8rem;
+    border-radius: 8px;
+    z-index: 1;
+  }
+  
+  .food-img_container img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 100%;
+  }
+  
+  .meal-details {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    color: rgb(27, 25, 25);
+  }
+  
+  .meal-details h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .meal-information {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .meal-information p {
+    padding: 0.3rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  .view-recipe_container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+  
+  .view-recipe_container p a {
+    color: #7d8590;
+    text-decoration: none;
+  }
+  

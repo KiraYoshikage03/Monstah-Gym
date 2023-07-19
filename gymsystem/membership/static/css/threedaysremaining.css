@@ -1,0 +1,70 @@
+/* CSS for threedaysremaining.html */
+
+table {
+    overflow-x: scroll;
+    font-size: 0.9rem;
+    margin: 1rem;
+}
+
+table tbody tr td {
+    padding: 0;
+}
+
+table tbody tr td {
+    margin: 1rem;
+    text-align: center;
+}
+
+table tbody tr td:nth-child(7) {
+    text-align: center;
+    margin: 1rem;
+}
+
+table tbody tr td:nth-child(7) button {
+    padding: 0 0.4rem;
+    border-radius: 8px;
+}
+
+table tbody tr td:nth-child(7) button:nth-child(1) {
+    background: rgb(46, 46, 75);
+}
+
+table tbody tr td:nth-child(7) button:nth-child(1) a {
+    color: rgb(80, 144, 205);
+}
+
+table tbody tr td:nth-child(7) button:nth-child(1) a:hover {
+    color: #7d8590;
+    transition: color 0.3s;
+}
+
+table tbody tr td:nth-child(7) button:nth-child(2) {
+    background: rgb(34, 46, 34);
+}
+
+table tbody tr td:nth-child(7) button:nth-child(2) a {
+    color: rgb(76, 164, 147);
+}
+
+table tbody tr td:nth-child(7) button:nth-child(2) a:hover {
+    color: #7d8590;
+    transition: color 0.3s;
+}
+
+
+form button {
+    background: rgb(43, 46, 34);
+    color: rgb(139, 164, 76);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+}
+
+form button:hover {
+    cursor: pointer;
+    background: rgb(70, 76, 52);
+}
+

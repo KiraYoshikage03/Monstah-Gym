@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Home</title>
+	<link rel="stylesheet" href="../../static/css/home.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	  <!-- Fonts -->
+	  <link rel="preconnect" href="https://fonts.googleapis.com">
+	  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+	  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Kanit:wght@100&family=Yantramanav:wght@400;500;700;900&display=swap" rel="stylesheet">
+	  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	  <!-- API for animation -->
+	  <script src="https://unpkg.com/scrollreveal"></script>
+	  <!-- For icon -->
+	  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	  <script src="https://kit.fontawesome.com/883a3b87d9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="content", name="content">
+		<div class="grid_container">
+			{% if request.user.is_authenticated %}
+			<div class="sidebar_container">
+				<div class="top_container">
+					<div class="top_logo_container">
+						<img src="../../static/files/monster-logo.png" alt="">
+						<span>Monster Gym</span>
+					</div>
+					<i class='bx bx-menu' id="btn"></i>
+				</div>
+				<div class="user_container">
+					<i class='bx bx-user-pin'></i>
+					<div class="profile_name_container">
+						<p class="name_bold">{{user.user_name}}</p>
+						<p>Member</p>
+					</div>
+				</div>
+				<ul>
+					<!-- <li>
+						<a href="">
+							<i class='bx bx-bell'></i>
+							<span class="sidebar_item">Notification</span>
+						</a>
+						<span class="tip">Notification</span>
+					</li> -->
+					<!-- <li>
+						<a href="">
+							<i class='bx bx-edit'></i>
+							<span class="sidebar_item">Edit Profile</span>
+						</a>
+						<span class="tip">Edit Profile</span>
+					</li> -->
+					<!-- <li>
+						<a href="">
+							<i class='bx bxs-id-card'></i>
+							<span class="sidebar_item">Generate ID</span>
+						</a>
+						<span class="tip">Generate ID</span>
+					</li> -->
+					<!-- <li>
+						<a href="#meal_planner_text">
+							<i class='bx bx-food-menu'></i>
+							<span class="sidebar_item">Meal Planner</span>
+						</a>
+						<span class="tip">Meal Planner</span>
+					</li> -->
+					<li>
+						<a href="#meal_planner_text">
+							<i class='bx bx-food-menu'></i>
+							<span class="sidebar_item">Start Meal Planner</span>
+						</a>
+						<span class="tip">Start Meal Planner</span>
+					</li>
+					<li>
+						<a href="#membership_section">
+							<i class='bx bx-crown'></i>
+							<span class="sidebar_item">Apply Membership</span>
+						</a>
+						<span class="tip">Apply Membership</span>
+					</li>
+					<li>
+						<a href="/signout">
+							<i class='bx bx-log-out'></i>
+							<span class="sidebar_item">Signout</span>
+						</a>
+						<span class="tip">Signout</span>
+					</li>	
+				</ul>
+
+				<!-- Navigation Section -->
+			</div>
+			<div class="nav_container">
+				<div class="nav_list_container">
+					<nav>
+						<ul>
+							<li><a href="">Home</a></li>
+							<li><a href="#membership_section">Membership</a></li>
+							<li><a href="#meal_planner_text">Meal Planner</a></li>
+						</ul>
+					</nav>
+				</div>		
+			</div>
+
+			<!-- Main Content -->
+			<div class="content">
+
+				<!-- Home Section -->
+					<div class="home_container">
+						<div class="home_greetings_user">
+								<h3>You are logged in as&nbsp{{user.email}}</h3>
+						</div>
+						<div class="home_description_container">
+								<!-- <h3 class="membership_status_text">Membership Status</h3>
+								<p class="expiration_text">Your expiration is in....</p>
+								<button class="renew_button" type="submit">Renew</button> -->
+								<div class="box">	
+									<!-- Monthly Notif-->
+									<!-- Monthly Not Verified-->
+									{% for data in nvuser_monthly %}
+									<p class="membership_status_text">Your Monthly Membership Application is currently in progress...</p>
+									{% endfor %}
+									
+									<!-- Monthly Cancel-->
+									{% for data in cancel_monthly %}
+									<p class="membership_status_text">We regret to inform you that your monthly membership application for our gym has been canceled. An email has been sent to your registered email address, providing further details regarding this decision. Kindly review the email for more information.</p>
+									<p class="membership_status_text">Please click the button below to submit follow up requirements.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'cancelmonthly' data.id %}">Submit Requirements</a></button></p>
+									{% endfor %}
+									<!-- Monthly Cancel Pending-->
+									{% for data in rcancel_monthly %}
+									<p class="membership_status_text">Your Monthly Membership Application is currently in progress...</p>
+									{% endfor %}
+
+									<!-- Monthly Renew 3 Days-->
+									{% for data in daysexpireduser3_monthly %}
+									<p class="membership_status_text">You only have 3 DAYS left in your Monthly Membership Subscription.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rmonthlymembership' data.id %}">Renew</a></button></p>
+									{% endfor %}
+									<!-- Monthly Renew 2 Days-->
+									{% for data in daysexpireduser2_monthly %}
+									<p class="membership_status_text">You only have 2 DAYS left in your MONTHLY MEMBERSHIP SUBSCRIPTION.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rmonthlymembership' data.id %}">Renew</a></button></p>
+									{% endfor %}
+									<!-- Monthly Renew 1 Day-->
+									{% for data in daysexpireduser1_monthly %}
+									<p class="membership_status_text">You only have 1 DAY left in your Monthly Membership Subscription.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rmonthlymembership' data.id %}">Renew</a></button></p>
+									{% endfor %}
+									
+									<!-- Monthly Renew 3 Days Pending-->
+									{% for data in rdaysexpireduser3_monthly %}
+									<p class="membership_status_text">Your Monthly Membership renewal is currently in progress..</p>
+									{% endfor %}
+									<!-- Monthly Renew 2 Days Pending-->
+									{% for data in rdaysexpireduser2_monthly %}
+									<p class="membership_status_text">Your Monthly Membership renewal is currently in progress..</p>
+									{% endfor %}
+									<!-- Monthly Renew 1 Days Pending-->
+									{% for data in rdaysexpireduser1_monthly %}
+									<p class="membership_status_text">Your Monthly Membership renewal is currently in progress..</p>
+									{% endfor %}
+
+									<!-- Monthly Renew Expired Pending-->
+									{% for data in rexpireduser_monthly %}
+									<p class="membership_status_text">Your Monthly Membership renewal is currently in progress...</p>
+									{% endfor %}
+			
+									<!-- Monthly Renew Expired-->
+									{% for data in expireduser_monthly %}
+									<p class="membership_status_text">Your Monthly Membership Subscription is EXPIRED.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rmonthlyexpired' data.id %}">Renew</a></button></p>
+									{% endfor %}
+			
+									<!-- Monthly ID-->
+									{% for data in user_monthly %}
+									<p class="membership_status_text">Monthly Membership Subscription</p>
+									<p class="expiration_text">Your susbscription will END in {{data.end_date}}</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'monthlymembershippdf' %}">Generate ID</a></button></p>
+									{% endfor %}
+									<!-- Monthly Notif-->
+			
+			
+									<!-- Annual Notif-->
+									<!-- Annual Not Verified-->
+									{% for data in nvuser_annual %}
+									<p class="membership_status_text">Your Annual Membership Subscription is currently in progress...</p>
+									{% endfor %}
+
+									<!-- Annual Cancel-->
+									{% for data in cancel_annual %}
+									<p class="membership_status_text">We regret to inform you that your annual membership application for our gym has been canceled. An email has been sent to your registered email address, providing further details regarding this decision. Kindly review the email for more information.</p>
+									<p class="membership_status_text">Please click the button below to submit follow up requirements.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'cancelannual' data.id %}">Submit Requirements</a></button></p>
+									{% endfor %}
+									<!-- Annual Cancel Pending-->
+									{% for data in rcancel_annual %}
+									<p class="membership_status_text">Your Annual Membership Application is currently in progress...</p>
+									{% endfor %}
+
+									<!-- Annual Renew 3 Days-->
+									{% for data in daysexpireduser3_annual %}
+									<p class="membership_status_text">You only have 3 DAYS left in your Annual Membership Subscription.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rannualmembership' data.id %}">Renew</a></button></p>
+									{% endfor %}
+									<!-- Annual Renew 2 Days-->
+									{% for data in daysexpireduser2_annual %}
+									<p class="membership_status_text">You only have 2 DAYS left in your Annual Membership Subscription.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rannualmembership' data.id %}">Renew</a></button></p>
+									{% endfor %}
+									<!-- Annual Renew 1 Day-->
+									{% for data in daysexpireduser1_annual %}
+									<p class="membership_status_text">You only have 1 DAY left in your Annual Membership Subscription.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rannualmembership' data.id %}">Renew</a></button></p>
+									{% endfor %}
+
+									<!-- Annual Renew 3 Days Pending-->
+									{% for data in rdaysexpireduser3_annual %}
+									<p class="membership_status_text">Your Annual Membership renewal is currently in progress..</p>
+									{% endfor %}
+									<!-- Annual Renew 2 Days Pending-->
+									{% for data in rdaysexpireduser2_annual %}
+									<p class="membership_status_text">Your Annual Membership renewal is currently in progress..</p>
+									{% endfor %}
+									<!-- Annual Renew 1 Days Pending-->
+									{% for data in rdaysexpireduser1_annual %}
+									<p class="membership_status_text">Your Annual Membership renewal is currently in progress..</p>
+									{% endfor %}
+
+									<!-- Annual Renew 30 Days-->
+									{% for data in daysexpireduser30_annual %}
+									<p class="membership_status_text">You only have 30 DAYS left in your Annual Membership Subscription.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rannualmembership' data.id %}">Renew</a></button></p>
+									{% endfor %}
+									<!-- Annual Renew 7 Days-->
+									{% for data in daysexpireduser7_annual %}
+									<p class="membership_status_text">You only have 7 DAYS left in your Annual Membership Subscription.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rannualmembership' data.id %}">Renew</a></button></p>
+									{% endfor %}
+
+									<!-- Annual Renew 30 Days-->
+									{% for data in rdaysexpireduser30_annual %}
+									<p class="membership_status_text">Your Annual Membership renewal is currently in progress..</p>
+									{% endfor %}
+									<!-- Annual Renew 7 Days-->
+									{% for data in rdaysexpireduser7_annual %}
+									<p class="membership_status_text">Your Annual Membership renewal is currently in progress..</p>
+									{% endfor %}
+			
+									<!-- Annual Renew Expired Pending-->
+									{% for data in rexpireduser_annual %}
+									<p class="membership_status_text">Your Annual Membership renewal is currently in progress...</p>
+									{% endfor %}
+			
+									<!-- Annual Renew Expired-->
+									{% for data in expireduser_annual %}
+									<p class="membership_status_text">Your Annual Membership Subscription is EXPIRED.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rannualexpired' data.id %}">Renew</a></button></p>
+									{% endfor %}
+			
+									<!-- Annual ID-->
+									{% for data in user_annual %}
+									<p class="membership_status_text">Annual Membership Subscription</p>
+									<p class="expiration_text">Your subscription will END in {{data.end_date}}</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'annualmembershippdf' %}">Generate ID</a></button></p>
+									{% endfor %}
+									<!-- Annual Notif-->
+			
+			
+									<!-- Custom Notif-->
+									<!-- Custom Not Verified-->
+									{% for data in nvuser_custom %}
+									<p class="membership_status_text">Your Custom Membership Application is currently in progress...</p>
+									{% endfor %}
+
+									<!-- Custom Cancel-->
+									{% for data in cancel_custom %}
+									<p class="membership_status_text">We regret to inform you that your custom membership application for our gym has been canceled. An email has been sent to your registered email address, providing further details regarding this decision. Kindly review the email for more information.</p>
+									<p class="membership_status_text">Please click the button below to submit follow up requirements.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'cancelcustom' data.id %}">Submit Requirements</a></button></p>
+									{% endfor %}
+									<!-- Custom Cancel Pending-->
+									{% for data in rcancel_custom %}
+									<p class="membership_status_text">Your Custom Membership Application is currently in progress...</p>
+									{% endfor %}
+									
+									<!-- Custom Renew 3 Days-->
+									{% for data in daysexpireduser3_custom %}
+									<p class="membership_status_text">You only have 3 DAYS left in your Custom Membership Application.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rcustommembership' data.id %}">Extend</a></button></p>
+									{% endfor %}
+									<!-- Custom Renew 2 Days-->
+									{% for data in daysexpireduser2_custom %}
+									<p class="membership_status_text">You only have 2 DAYS left in your Custom Membership Application.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rcustommembership' data.id %}">Extend</a></button></p>
+									{% endfor %}
+									<!-- Custom Renew 1 Day-->
+									{% for data in daysexpireduser1_custom %}
+									<p class="membership_status_text">You only have 1 DAY left in your Custom Membership Application.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rcustommembership' data.id %}">Extend</a></button></p>
+									{% endfor %}
+									
+									<!-- Custom Renew 3 Days Pending-->
+									{% for data in rdaysexpireduser3_custom %}
+									<p class="membership_status_text">Your Custom Membership renewal is currently in progress..</p>
+									{% endfor %}
+									<!-- Custom Renew 2 Days Pending-->
+									{% for data in rdaysexpireduser2_custom %}
+									<p class="membership_status_text">Your Custom Membership renewal is currently in progress..</p>
+									{% endfor %}
+									<!-- Custom Renew 1 Days Pending-->
+									{% for data in rdaysexpireduser1_custom %}
+									<p class="membership_status_text">Your Custom Membership renewal is currently in progress..</p>
+									{% endfor %}
+
+									<!-- Custom Renew Expired Pending-->
+									{% for data in rexpireduser_custom %}
+									<p class="membership_status_text">Your Custom Membership renewal is currently in progress...</p>
+									{% endfor %}
+			
+									<!-- Custom Renew Expired-->
+									{% for data in expireduser_custom %}
+									<p class="membership_status_text">Your Custom Membership Subscription is EXPIRED.</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'rcustomexpired' data.id %}">Renew</a></button></p>
+									{% endfor %}
+			
+									<!-- Custom ID-->
+									{% for data in user_custom %}
+									<p class="membership_status_text">Custom Membership Subscription</p>
+									<p class="expiration_text">Your susbscription will START in {{data.start_date}} and END in {{data.end_date}}</p>
+									<p><button class="renew_button" type="button"> <a href="{% url 'custommembershippdf' %}">Generate ID</a></button></p>
+									{% endfor %}
+			
+									<!-- Custom Notif-->
+								</div>
+								
+						</div>
+						<div class="home_image">
+							<img class="home_pic" src="../../static/files/home_page_img.png" alt="">
+						</div>
+					</div>
+
+					<!-- Meal Planner Section -->
+					<div class="meal_planner_container" id="meal_planner_text">
+						<div class="meal_planner_header_container">
+							<div class="meal_planner_header">
+								<h4>What&nbsp<span class="you_can_text">&nbspyou can&nbsp</span>&nbsp<span class="get_text">get</span></h4>
+							</div>
+							<div class="meal_planner_description">
+								<p class="meal_planner_box_description">The meal recommendation feature assists users in achieving 
+									<br>fitness goals, improving nutrition, and maintaining a healthy lifestyle 
+									<br>through informed meal decisions.</p>
+							</div>
+						</div>
+						<!-- <div class="meal_planner_box1">
+							<div class="meal_planner_box1_icon">
+								<i class="fa-solid fa-money-check-dollar"></i>
+							</div>
+							<div class="meal_planner_box1_description">
+								<p class="meal_planner_box_description">The system can suggest budget-friendly meal plans and recipes that fit the user's budget, enabling cost-effective 
+									fitness goals achievement.
+								</p>
+							</div>
+						</div> -->
+						<div class="meal_planner_box2">
+							<img src="../../static/files/meal_planner_pic.jpg" alt="">
+						</div>
+						<!-- <div class="meal_planner_box3">
+							<div class="meal_planner_box3_icon">
+								<i class="fa-solid fa-chart-simple"></i>
+							</div>
+							<div class="meal_planner_box3_description">
+								<p class="meal_planner_box_description">Provides nutrient analysis of meals, enabling informed food choices to avoid deficiencies and meet nutritional needs.
+								</p>
+							</div>
+						</div>
+						<div class="meal_planner_box4">
+							<div class="meal_planner_box4_icon">
+								<i class="fa-solid fa-thumbs-up"></i>
+							</div>
+							<div class="meal_planner_box3_description">
+								<p class="meal_planner_box_description">Provides automatic meal recommendations based on user's goals, preferences, and nutritional needs, saving time and 
+									effort by eliminating manual planning.
+								</p>
+							</div>
+						</div>
+						<div class="meal_planner_box5">
+							<div class="meal_planner_box5_icon">
+								<i class="fa-solid fa-bowl-food"></i>
+							</div>
+							<div class="meal_planner_box5_description">
+								<p class="meal_planner_box_description">The system can offer tailored meal combinations based on the user's preferred foods and nutrient 
+									needs.
+								</p>
+							</div>
+						</div> -->
+						<div class="meal_planner_box6">
+							<div class="meal_planner_box6_icon">
+								<i class="fa-solid fa-calendar-day"></i>
+							</div>
+							<div class="meal_planner_box6_description">
+								<p class="meal_planner_box_description">The system can suggest diverse meals to prevent meal plan <br>boredom and keep users motivated in their diet.
+								</p>
+							</div>
+							<div class="button_started_container">
+								<button class="button_started" type="button">
+									<a href='/mealplanform'>Get Started</a>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- Routine Section -->
+
+					<!-- <div class="routine_container">
+						<div class="routine_features_container">
+							<div class="routine_features1_container">
+								<div class="routine_features1">
+									<img src="footer-logo.png" alt="">
+									<h4>Lorem, ipsum.</h4>
+									<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt debitis et 
+										eveniet aliquam rerum sunt repellendus impedit nam vero consectetur.</p>
+								</div>
+							</div>
+							<div class="routine_features2_container">
+								<div class="routine_features2">
+									<img src="footer-logo.png" alt="">
+									<h4>Lorem, ipsum.</h4>
+									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni alias reiciendis pariatur 
+										atque, qui nemo unde aliquid inventore nisi doloremque.</p>
+								</div>
+							</div>
+							<div class="routine_features3_container">
+								<div class="routine_features3">
+									<img src="footer-logo.png" alt="">
+									<h4>Lorem, ipsum.</h4>
+									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur explicabo quod excepturi 
+										perspiciatis obcaecati officiis architecto sequi, nobis eveniet quia.</p>
+								</div>
+							</div>
+							<div class="routine_features4_container">
+								<div class="routine_features4">
+									<img src="footer-logo.png" alt="">
+									<h4>Lorem, ipsum.</h4>
+									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur explicabo quod excepturi 
+										perspiciatis obcaecati officiis architecto sequi, nobis eveniet quia.</p>
+								</div>
+							</div>
+						</div>
+						<div class="routine_description_container">
+							<div class="routine_title">
+								<h3 class="routine_title_text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti, natus?</h3>
+								<p class="routine_description_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quidem, veniam omnis magni sit iste? Rerum, 
+									numquam in? Veritatis ipsa, eos quibusdam maiores laboriosam repudiandae aut asperiores explicabo numquam nulla?</p>
+								<button class="explore_text">
+									<p>Explore</p>
+									<svg stroke-width="4" stroke="currentColor" viewBox="0 0 24 24" fill="none" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
+										<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linejoin="round" stroke-linecap="round"></path>
+									</svg>
+								</button>
+							</div>
+						</div>
+					</div> -->
+
+					<!-- Membership Section -->
+					<div class="membership_container">
+						<div class="membership_title">
+							<h2 class="membership_title_text" id="membership_section">Membership</h2>
+							<p class="choose_text">Choose your Plan.</p>
+						</div>
+						<div class="membership_box">
+							<div class="monthly">
+								<div class="monthly_box">
+									<div class="monthly_content">
+										<h4 class="title_header">Monthly</h4>
+										<!-- <hr class="border_title"> -->
+										<p class="description">₱550.00/mo</p>
+										<div class="benefits_container">
+											<i class='bx bx-check'></i>	
+											<p class="benefits_text">Up to 30 session per month</p>
+										</div>
+										<div class="benefits_container">
+											<i class='bx bx-check'></i>	
+											<span class="benefits_text">Access of Meal Planner and Routine Management</p>
+										</div>
+										<div class="benefits_container">
+											<i class='bx bx-check'></i>	
+											<p class="benefits_text">Monthly expiration</p>
+										</div>
+									</div>
+									<div class="subscribe_box">
+										<button class="button_subscribe" type="button"> 
+											<a class="subscribe" href='/monthlyform'>Subscribe</a>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="annual">
+								<div class="annual_box">
+									<div class="annual_content">
+										<h4 class="title_header">Annual</h4>
+										<!-- <hr class="border_title"> -->
+										<p class="description">₱6000.00/yr</p>
+										<div class="benefits_container">
+											<i class='bx bx-check'></i>	
+											<p class="benefits_text">Up to 300+ session per month</p>
+										</div>
+										<div class="benefits_container">
+											<i class='bx bx-check'></i>	
+											<p class="benefits_text">Access of Meal Planner and Routine Management</p>
+										</div>
+										<div class="benefits_container">
+											<i class='bx bx-check'></i>	
+											<p class="benefits_text">Annual expiration</p>
+										</div>
+									</div>
+									<div class="subscribe_box">
+										<button class="button_subscribe" type="button"> 
+											<a class="subscribe" href='/annualform'>Subscribe</a>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="custom">
+								<div class="custom_box">
+									<div class="custom_content">
+										<h4 class="title_header">Custom</h4>
+										<!-- <hr class="border_title"> -->
+										<p class="description">₱25.00/session</p>
+										<div class="benefits_container">
+											<i class='bx bx-check'></i>	
+											<p class="benefits_text">Per session</p>
+										</div>
+										<div class="benefits_container">
+											<i class='bx bx-check'></i>	
+											<p class="benefits_text">Access of Meal Planner and Routine Management</p>
+										</div>
+										<div class="benefits_container">
+											<i class='bx bx-check'></i>	
+											<p class="benefits_text">Per session expiration</p>
+										</div>
+									</div>
+									<div class="subscribe_box">
+										<button class="button_subscribe" type="button"> 
+											<a class="subscribe" href='/customform'>Subscribe</a>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="horizontal_text_container">
+							<h4 class="text_one">Become a Member Now!</h4>
+						</div>
+					</div>
+				</div>	
+			<!-- Footer Section -->
+			<!-- <div class="footer">
+				<h1>Hello World</h1>
+			</div> -->
+				
+		{% endif %}	
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+	<script src="../../static/js/home.js"></script>
+</body>
+</html>

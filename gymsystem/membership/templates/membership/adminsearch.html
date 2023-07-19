@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- user page - admin landing -->
+        <title>Admin</title>
+
+        <!-- External CSS -->
+        <link rel="stylesheet" href="../../static/css/adminpage.css">  
+
+        <!-- Fonts (Google)-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+
+        <!-- Icons (Font Awesome) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+        <!-- Icons (Boxicon) -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    </head>
+
+    <body>
+
+        <!-- di ko sure how this work so i opted to make it a comment muna -->
+        {% if request.user.is_authenticated %}
+        <!--<div id="content", name="content">      = ito yung naka wrap sa buong content -->
+
+            <!-- HEADER -->
+            <header class="header">
+
+                <div class="logo">
+                    <a href="/adminpage"><img src="../../static/files/monster-logo.png" alt="logo">Admin</a>
+                    <form method="post" action="{% url 'adminsearch' %}">
+                        {% csrf_token %}
+                        <div class="search_box">
+                            <input type="search" name="search" placeholder="Search Email or Name" value="{{search}}">
+                            <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+							<button type="button"><a href="/adminpage">Clear Search</a></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="header-icons">
+                    <div class="account">
+                    <h4>{{user.user_name}}</h4>
+                    </div>
+                </div>
+
+            </header>
+                
+
+            <!-- LEFT SIDEBAR (categories) -->
+            <section class="L-sidebar">
+                <nav class="L-sidebar-nav">
+                    <span>Dashboard</span>
+                            <!-- nagf fle not found kaya ganyan ko muna link -->
+                            <a href="/adminpage"><i class='bx bx-user'></i>Users</a>
+                            <a href="/membership" class="active"><i class='bx bx-crown' ></i>Membership</a>
+                            <a href="#"><i class='bx bx-bar-chart-alt'></i>Forecasting</a>
+                            <a href="/signout"><i class='bx bx-log-out'></i>Signout</a>
+                            <!-- di ko ma-connect yung sign out page?? -->
+                </nav>
+            </section>
+
+            <!-- RIGHT SIDBAR (newly created user) -->
+            <section class="R-sidebar">
+                <div class="R-sidebar-user">
+                    <h4>New Created User</h4>
+                    {% for data in new_user %}
+
+                    <div class="balance">
+
+                    <!-- <i class="fas fa-user icon"></i> -->
+                    <div class="info">
+                        <h5>{{ data.user_name }}</h5>
+                        <span>{{ data.date_joined }}</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+            
+                </div>
+            </section>
+
+            <!-- MAIN BODY -->
+            <main class="main-body">
+
+                <!-- USERS -->
+                <div class="top-card">
+                    <div class="user-card">
+                        <h1>Welcome to Users&nbsp&nbsp<i class='bx bx-user-circle'></i></h1>
+			            <span>This is where the admin edit/delete the data of the users.</span> 
+                    </div>
+                    
+                </div>
+
+                <!-- ACCOUNTS -->
+                <div class="bottom-card">
+                    <div class="account_box">
+                        <h2 href="userinfotable.html"><i class='bx bx-user'></i>&nbsp&nbsp&nbsp&nbspAccounts - {{ numberof_user }}</h2>
+                    </div>
+
+                    <!-- <div class="acc-table"> -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Email</th>
+                                    <th>Username</th>
+                                    <th>Admin</th>
+                                    <th>Staff</th>
+                                    <th>Last Login</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                    {% for data in users %}
+                                    <tr>
+                                        <td>{{data.id}}</td>
+                                        <td>{{data.email}}</td>
+                                        <td>{{data.user_name}}</td>
+                                        <td>{{data.is_superuser}}</td>
+                                        <td>{{data.is_staff}}</td>
+                                        <td>{{data.last_login}}</td>
+                                        <td><button type="button"> <a href="{% url 'usersedit' data.id %}"> Edit</a></button><button type="button"> <a href="{% url 'usersdelete' data.id %}" onclick="return confirm('Are you sure you want to Remove?');"> Delete</a></button></td>
+                                    </tr>
+                                    {% endfor %}
+
+                            </tbody>
+                        </table>
+                    <!-- </div> -->
+                </div>
+                
+            </main>
+        <!-- </div> = endtag nung content div-->
+		{%  endif %}
+    </body>
+</html>

@@ -1,0 +1,439 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+    
+}
+
+body{
+    background: rgba(255, 255, 255, 1);
+    color: rgb(15, 15, 15); 
+    max-width: 100%;
+}
+
+/*NAVIGATION BAR DESIGN --START-- */
+
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: black;
+    padding: 20px 5%;
+    border-bottom: 1px solid transparent;
+    transition: all .5s ease;
+}
+
+.navigation{
+    display: flex;
+    align-items: center;
+}
+
+.navigation a{
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Montserrat';
+    margin: 0 25px;
+    transition: all .5s ease;
+    position: relative;
+    display: flex;
+}
+
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 1);
+    transform-origin: center;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover::after{
+    transform-origin: center;
+    transform: scaleX(1);
+}
+
+/*.navigation .bttnSignIn{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 1);
+    font-family: 'Montserrat';
+    font-weight: 600;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.navigation .bttnSignIn:hover{
+    background:rgba(33, 68, 32, 1);
+    color: rgb(0, 0, 0);
+}*/
+
+.navigation .navSignIn{
+    font-size: 18px;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.navigation .navSignIn span i{
+    font-size: 30px;
+    margin-right: 5px;
+    transition: all .5s ease;
+}
+
+#menu-icon{
+    font-size: 35px;
+    color: rgba(255, 255, 255, 1);
+    z-index: 10001;
+    cursor: pointer;
+    margin-left: 25px;
+    display: none;
+}
+
+/*NAVIGATION BAR DESIGN --END-- */
+
+section{
+    padding: 160px 15% 120px;
+}
+
+/*HOME/SPLASH DESIGN --START-- */
+
+.home{
+    position: relative;
+    background-image: url(../../static/files/background.png);
+    height: 100vh;
+    max-width: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.home-content{
+    max-width: 600px;
+    text-align: center;
+}
+
+.home-content h1{
+    font-family: 'Poppins';
+    font-size: 70px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 1);
+    margin: 0 0 8px;
+}
+
+.home-content p{
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    margin-bottom: 40px;
+}
+
+.buttons{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeSignIn{
+    display: inline-block;
+    padding: 12px 28px;
+    width: 170px;
+    height: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 1);
+    font-size: 20px;
+    font-weight: 600;
+    transition: all .5s ease;
+}
+
+.homeSignIn:hover{
+    transform: scale(0.9);
+}
+
+.homeJoinNow{
+    display: inline-block;
+    padding: 12px 28px;
+    width: 170px;
+    height: 100%;
+    background: rgba(33, 68, 32, 1);
+    border: 1px solid rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 1);
+    font-size: 20px;
+    font-weight: 600;
+    transition: all .5s ease;
+    margin-left: 40px;
+}
+
+.homeJoinNow:hover{
+    transform: scale(0.9);
+}
+
+/*HOME/SPLASH DESIGN --END-- */
+
+header.sticky{
+    background: rgba(2, 2, 2, 1);
+    border-bottom: 2px solid rgba(33, 68, 32, 1);
+    padding: 12px 15%;
+}
+
+/*ABOUT DESIGN --START-- */
+
+.about{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    align-items: center;
+    margin-top: 20px;
+    gap: 1rem;
+}
+
+.about-us-content h1{
+    font-family: 'Poppins';
+    font-size: 30px;
+    font-weight: 700;
+    color: rgba(2, 2, 2, 1);
+    margin-bottom: 15px;
+}
+
+.about-us-content p{
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(2, 2, 2, 1);
+    margin-bottom: 20px;
+}
+
+.about-img-monster-img img{
+    max-width: 300px;
+    height: auto;
+    width: 100%;
+}
+
+/*ABOUT DESIGN --END-- */
+
+/*INFORMATION DESIGN --START-- */
+
+.info-content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.row{
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.row img{
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    transition: transform 0.5s;
+}
+
+.layer{
+    width: 100%;
+    height: 0;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(33, 68, 32, 1));
+    position: absolute;
+    border-radius: 8px;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 40px;
+    transition: height 0.5s;
+}
+
+.layer h1{
+    font-family: 'Poppins';
+    font-size: 50px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 1);
+    margin-bottom: 15px;
+}
+
+.layer i{
+    color: rgba(255, 255, 255, 1);
+    margin-top: 20px;
+    font-size: 20px;
+    background: rgba(33, 68, 32, 1);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.row:hover img{
+    transform: scale(1.1);
+}
+
+.row:hover .layer{
+    height: 100%;
+}
+
+/*INFORMATION DESIGN --END-- */
+
+/*FOOTER DESIGN --END-- */
+
+footer{
+    width: 100%;
+    padding: 20px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background: rgb(27, 27, 27); 
+    scroll-behavior: smooth;
+}
+
+.footer-navigation{
+    color: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    max-width: 700px;
+}
+
+.footer-navigation h3{
+    font-size: 16px;
+    margin: 0 25px;
+}
+
+.footer-navigation p{
+    font-size: 14px;
+    margin: 0 25px;
+}
+
+/*
+.address{
+    
+    margin-left: 250px;
+
+}
+
+.hours{
+    max-width: 200px;
+    position: absolute;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.other{
+    max-width: 200px;
+    position: absolute;
+  
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 14px;
+}*/
+
+.top i{
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 1);
+    background: rgba(33, 68, 32, 1);
+}
+
+
+@media (max-width: 1480px){
+    header{
+        padding: 12px 2.5%;
+        transition: .1s;
+    }
+    header.sticky{
+        padding: 10px 2.5%;
+        transition: .1s;
+    }
+    section{
+        padding: 110px 3% 60px;
+    }
+    footer{
+        padding: 15px 3%;
+    }
+}
+
+@media (max-width: 1100px){
+    .about{
+        grid-template-columns: 1fr;
+    }
+    .about-us-content{
+        text-align: center;
+    }
+    .about-img-monster-img{
+        text-align: center;
+        order: 2;
+    }
+    .about-img-monster-img img{
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 920px){
+    #menu-icon{
+        display: block;
+    }
+    .navigation{
+        position: absolute;
+        top: -1000px;
+        right: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        background:rgb(15, 15, 15);
+        text-align: left;
+        transition: all .5s ease;
+        line-height: 1rem;
+    }
+    .navigation a{
+        display: block;
+        margin: 16px;
+        font-size: 20px;
+        transition: all .5s ease;
+        color: rgba(255, 255, 255, 1);
+    }
+    .navigation a:hover{
+        color: rgba(33, 68, 32, 1);
+    }
+    .navigation a.active{
+        color: rgba(33, 68, 32, 1);
+    }
+    .navigation.open{
+        top: 100%;
+    }
+}

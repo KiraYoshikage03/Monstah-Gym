@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- membership page -->
+        <title>Admin</title>
+
+        <!-- External CSS -->
+        <link rel="stylesheet" href="../../static/css/adminmember.css">  
+        <!-- Fonts (Google)-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+
+        <!-- Icons (Font Awesome) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+        <!-- Icons (Boxicon) -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+
+    <body> 
+
+    <!-- From here same lang html and css sa adminpg.html -->
+
+        <!-- di ko sure how this work so i opted to make it a comment muna -->
+        {% if request.user.is_authenticated %}
+        <!-- <div id="content", name="content"></div> = ito yung naka wrap sa buong content -->
+
+            <!-- HEADER -->
+            <header class="header">
+                
+                <div class="logo">
+                    <a href="/adminpage"><img src="../../static/files/monster-logo.png" alt="logo">Admin</a>
+                    <!-- <form method="post" action="{% url 'membershipsearch' %}">
+                        {% csrf_token %}
+                        <div class="search_box">
+                            <input type="search" name="search" placeholder="Search Unique ID or Name">
+                            <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form> -->
+                </div>
+
+                <div class="header-icons">
+                    <div class="account">
+                    <h4>{{user.user_name}}</h4>
+                    </div>
+                </div>
+
+            </header>
+
+
+            <!-- LEFT SIDEBAR (categories) -->
+            <section class="L-sidebar">
+                <nav class="L-sidebar-nav">
+                    <span>Dashboard</span>
+                            <a href="/adminpage"><i class='bx bx-user'></i>Users</a>
+                            <a href="/membership" class="active"><i class='bx bx-crown' ></i>Membership</a>
+                            <a href="/forecasting"><i class='bx bx-bar-chart-alt'></i>Forecasting</a>
+                            <a href="/signout"><i class='bx bx-log-out'></i>Signout</a>
+                </nav>
+            </section>
+
+    <!-- To here same lang html and css sa adminpg.html -->
+
+
+    <!-- RIGHT SIDBAR (newly created user) -->
+            <section class="R-sidebar">
+                <div class="R-sidebar-user">
+                    <h4>New Application</h4>
+                    <span>Monthly Membership</span>
+                    {% for data in monthlynew_application %}
+                    <div class="balance">
+                    <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accepted</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for data in nvmonthlynew_application %}
+                    <div class="balance">
+                    <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pending</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+                    
+                    <span>Annual Membership</span>
+                    {% for data in annualnew_application %}
+                    <div class="balance">
+                    <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accepted</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for data in nvannualnew_application %}
+                    <div class="balance">
+                        <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pending</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+
+                    <span>Custom Membership</span>
+                    {% for data in customnew_application %}
+                    <div class="balance">
+                    <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accepted</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for data in nvcustomnew_application %}
+                    <div class="balance">
+                        <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pending</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button id="backToTopBtn" onclick="scrollToTop()"><i class='bx bx-chevron-up'></i></button>
+            </section>
+
+
+            <!-- MAIN BODY -->
+            <main class="main-body">
+
+                <!-- USERS - MEMBERSHIPS -->
+                <div class="top-card">
+                    <div class="user-card">
+                        <h1>Welcome to Membership&nbsp&nbsp<i class='bx bxs-user-account'></i></h1>
+			            <span>This is where the admin accept/delete the membership application of the users.</span> 
+                    </div>
+                </div>
+
+                <!-- ACCOUNTS -->
+                <div class="bottom-card">
+                    <div class="membership_application">
+                        <!-- This will direct to the table of membership application -->
+                        <a href="/membershipapplication"> 
+                            <div class="card_title">
+                                <h2><i class='bx bx-check-circle'></i>Membership Applications</h2>
+                            </div>
+                            <h3>Monthly Application {{ nnotverified_monthly }}</h3>
+                            <h3>Annual Application {{ nnotverified_annual }}</h3>
+                            <h3>Custom Application {{ nnotverified_custom }}</h3>
+                        </a>
+                    </div>
+                    <div class="cancel_membership_application">
+                        <!-- This will direct to the table of cancel membership application -->
+                        <a href="/cancelmembershipapplication">
+                            <div class="card_title">
+                                <h2><i class='bx bx-x-circle'></i>Cancel Membership Applications</h2>
+                            </div>
+                            <h3>Monthly Application {{ ncancel_monthly }}</h3>
+                            <h3>Annual Application {{ ncancel_annual }}</h3>
+                            <h3>Custom Application {{ ncancel_custom }}</h3>
+                        </a>
+                    </div>
+                    <div class="three_days">
+                        <!-- This will direct to the table of three days remaining -->
+                        <a href="/threedaysremaining">
+                            <div class="card_title">
+                                <h2><i class='bx bx-calendar-exclamation'></i>3 Days Remaining</h2>
+                            </div>
+                            <h3>Monthly Membership {{ nseverified_monthly }}</h3>
+                            <h3>Annual Membership {{ nseverified_annual }}</h3>
+                            <h3>Custom Membership {{ nseverified_custom }}</h3>
+                        </a>
+                    </div>
+                    <div class="renew_active_membership">
+                        <!-- This will direct to the table of renew active membership -->
+                        <a href="/renewactivemembership">
+                            <div class="card_title">
+                                <h2><i class='bx bx-id-card'></i>Renew Active Memberships</h2>
+                            </div>
+                            <h3>Monthly Membership Active {{ nrverified_monthly }}</h3>
+                            <h3>Annual Membership Active {{ nrverified_annual }}</h3>
+                            <h3>Custom Membership Active {{ nrverified_custom }}</h3>
+                        </a>
+                    </div>
+                    <div class="renew_expired_membership">
+                        <!-- This will direct to the table of renew expired membership -->
+                        <a href="/renewexpiredmembership">
+                            <div class="card_title">
+                                <h2><i class='bx bx-user-minus'></i>Renew Expired Memberships</h2>
+                            </div>
+                            <h3>Monthly Membership Expired {{ nrexpired_monthly }}</h3>
+                            <h3>Annual Membership Expired {{ nrexpired_annual }}</h3>
+                            <h3>Custom Membership Expired {{ nrexpired_custom }}</h3>
+                        </a>
+                    </div>
+                    <div class="active_membership">
+                        <!-- This will direct to the table of active membership -->
+                        <a href="/activemembership">
+                            <div class="card_title">
+                                <h2><i class='bx bx-user-check'></i>Active Memberships</h2>
+                            </div>
+                            <h3>Monthly Membership Active {{ nverified_monthly }}</h3>
+                            <h3>Annual Membership Active {{ nverified_annual }}</h3>
+                            <h3>Custom Membership Active {{ nverified_custom }}</h3>
+                        </a>
+                    </div>
+                    <div class="expired_membership">
+                        <!-- This will direct to the table of expired membership -->
+                        <a href="/expiredmembership">
+                            <div class="card_title">
+                                <h2><i class='bx bx-alarm-exclamation'></i>Expired Memberships</h2>
+                            </div>
+                            <h3>Monthly Membership Expired {{ nexpired_monthly }}</h3>
+                            <h3>Annual Membership Expired {{ nrexpired_annual }}</h3>
+                            <h3>Custom Membership Expired {{ nexpired_custom }}</h3>
+                        </a>
+                    </div>
+                </div>
+                
+            </main>
+		{%  endif %}
+        <script src="../../static/js/membership.js"></script>
+    </body>
+</html>

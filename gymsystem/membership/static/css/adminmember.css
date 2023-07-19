@@ -1,0 +1,824 @@
+/* CSS for membership.html */
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* colors */
+  /* white = rgba(255, 255, 255, 1);
+  black = rgb(15, 15, 15);
+  dark green = rgba(33, 68, 32, 1); */
+  
+  body{
+    height: 100vh;
+    background: rgba(10, 7, 14);
+  
+    /* overflow-y: scroll; */
+  
+    display: grid;
+  
+    grid-template-columns:  0.2fr 1.6fr 0.35fr;
+    grid-template-rows: 65px 1.8fr;
+  
+    gap: 50px 40px;
+  
+    /* padding: 10px; */
+  
+    grid-template-areas:
+    "header header header"
+    "L-sidebar main-body R-sidebar";
+  }
+  
+  /* .content{
+  display: flex;
+  align-items: center;
+  } */
+  
+  /* HEADER DESIGN */
+  
+  .header{
+    grid-area: header;
+  
+    width: 100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    background-color: rgba(10, 7, 14);
+  
+    
+  }
+  
+  .logo{
+    display: flex;
+    align-items: center;
+    background: rgba(10, 7, 14);
+  }
+  
+  .logo a{
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgb(228, 223, 223);
+    margin: 2rem 7rem 2rem 3.2rem;
+  }
+  
+  .logo img {
+    object-fit: fill;
+    width: 2rem;
+  }
+  
+  .search_box{
+    display: flex;
+    align-items: center;
+  }
+  
+  .search_box input{
+    width: 15rem;
+    padding: 0.7rem;
+    background-color: rgb(28,28,30);
+    color: rgb(228, 223, 223);
+    box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+    border-radius: 0.4vw;
+    border: none;
+    outline: none;
+    transition: .4s;
+  }
+  
+  .search_box input:hover {
+    box-shadow: 0 0 0 .15vw rgba(135, 235, 137, 0.186);
+  }
+  
+  .search_box input:focus {
+    box-shadow: 0 0 0 .15vw rgb(128, 247, 164);
+  }
+  
+  .search_box i{
+    padding: 0.7rem;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(10, 7, 14);
+  }
+  
+  .header-icons{
+    display: flex;
+    align-items: center;
+    margin-right: 5rem;
+    color: rgb(8, 46, 7);
+  }
+  
+  .header-icons i{
+    margin-right: 2rem;
+    cursor: pointer;
+  }
+  
+  .header-icons .account{
+    width: 8.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(228, 223, 223);
+    text-transform: capitalize;
+  }
+  
+  .header-icons .account h4 {
+    background: rgb(43, 46, 34);
+    color: rgb(139, 164, 76);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+  }
+  
+  .fa-bell {
+    color: rgb(228, 223, 223);
+  }
+  
+  /* LEFT SIDEBAR DESIGN */
+  
+  .L-sidebar {
+    grid-area: L-sidebar;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* position: fixed;
+    height: 100%;
+    margin-top: 5\%; */
+    background: rgba(10, 7, 14);
+    border-right-style: solid;
+    border-color: rgb(32, 32, 32);
+  }
+  
+  nav {
+    background: transparent;
+    padding: 0.313rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .L-sidebar-nav span {
+    font-size: 1.5rem;
+    color: white;
+    margin: 0 3rem 1rem;
+  }
+  
+  .L-sidebar-nav a {
+    width: 100%;
+    padding: 0.8rem 2.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: white;
+    line-height: 2.5;
+  }
+  
+  .L-sidebar nav a i {
+    padding-right: 0.9rem;
+    text-align: center;
+  }
+  
+  .links{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .links a{
+    font-size: 13px;
+  }
+  
+  .L-sidebar-nav a:hover{
+    background: #4a524c;
+  }
+  
+  .L-sidebar-nav .active{
+    border-left: 2px solid #4e5c52;
+  }
+  
+  /* RIGHT SIDEBAR DESIGN */
+  
+  .R-sidebar{
+    grid-area: R-sidebar;
+    padding: 0 0.5rem;
+  }
+  
+  .R-sidebar-user{
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .R-sidebar-user h4{
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+  
+  .R-sidebar-user .balance{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .R-sidebar .R-sidebar-user span {
+    font-size: 0.9rem;
+    color: #7d8590;
+    line-height: 2;
+    
+  }
+  
+  /* .balance .icon{
+    color: #fff;
+    font-size: 20px;
+    border-radius: 6px;
+    margin-right: 1rem;
+    padding: 1rem;
+    background: rgb(54, 7, 223);
+  } */
+  
+  .balance .info h5{
+    font-size: 16px;
+    color: white;
+  }
+  
+  .balance span{
+    font-size: .75rem;
+    color: rgb(228, 223, 223);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* .balance .info i{
+    margin-right: 48px;
+  } */
+  
+  /* MAIN  BODY DESIGN */
+  
+  .main-body{
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-rows: 0.3fr 1.4fr;
+    gap: 30px 0px;
+  
+    grid-area: main-body;
+  
+    background-color: rgba(10, 7, 14);
+  
+    /* width: 70%; */
+    /* padding: 5rem; */
+  }
+  
+  /* Back to top button */
+  
+  #backToTopBtn {
+    display: none;
+    position: fixed;
+    left: 90%;
+    z-index: 99;
+    width: 5rem;
+    height: 5rem;
+    border: none;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    background-color: #333;
+    font-size: 3rem;
+    cursor: pointer;
+  }
+  
+  #backToTopBtn:hover {
+    background-color: #555;
+  }
+  
+  #backToTopBtn i {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* TOP-CARD DESIGN (USERS + MEMBERSHIP AREA) */
+  .top-card{
+    grid-area: 1 / 1 / 2 / 2;
+  
+    background-color: transparent;
+  
+    border-radius: 10px;
+  }
+  
+  .top-card h2 {
+    color: white;
+  }
+  
+  /* .users h2{
+    font-size: 25px;
+    padding: 1rem;
+  }
+  
+  .users h1{
+    padding: 1rem;
+  } */
+  
+  .user-card{
+    width: 100%;
+    color: #fff;
+    padding: 0.5rem 1rem 1.5rem 3rem;
+    background: rgba(25, 24, 26);
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .user-card:before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 0;
+    background: rgb(76, 79, 78);
+    box-shadow: 0 0 100px 50px rgb(76, 79, 78);
+  }
+  
+  .top-card .user-card span {
+    font-size: 0.9rem;
+  }
+  
+  .user-card h1, .user-card span, button{ /* button pertains to the action button*/
+    margin: 10px;
+  }
+  
+  .card_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card_title .bx-check-circle {
+    font-size: 2rem;
+    color: rgb(76, 164, 147);
+  }
+  
+  .card_title .bx-x-circle {
+    font-size: 2rem;
+    color: rgb(76, 121, 164);
+  }
+  
+  .card_title .bx-calendar-exclamation {
+    font-size: 2rem;
+    color: rgb(139, 164, 76);
+  }
+  
+  .card_title .bx-id-card {
+    font-size: 2rem;
+    color: rgb(164, 76, 94);
+  }
+  
+  .card_title .bx-user-minus {
+    font-size: 2rem;
+    color: rgb(164, 110, 76);
+  }
+  
+  .card_title .bx-user-check {
+    font-size: 2rem;
+    color: rgb(161, 76, 164);
+  }
+  
+  .card_title .bx-alarm-exclamation {
+    font-size: 2rem;
+    color: rgb(164, 76, 76);
+  }
+  
+  /* .user-card button{
+    display: block;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #6db784;
+  } */
+  
+  .account_box {
+    width: 20rem;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    overflow: hidden;
+  }
+  
+  /* .account_box:hover {
+    background: rgb(38, 36, 41);
+    cursor: pointer;
+  }
+  
+  .account_box:before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 0;
+    background-color: rgb(76, 164, 147);
+    box-shadow: 0 0 100px 50px rgb(76, 164, 147);
+  }
+  
+  .account_box i, .account_box h2 {
+    padding: 3rem 0;
+  } */
+  
+  /* BOTTOM-CARD DESIGN (ACCOUNTS + MEMBERSHIP -ACTIVE-APPLICATION-EXPIRED AREA) */
+  
+  .bottom-card{
+    grid-area: 2 / 1 / 3 / 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 2rem 2rem;
+    background-color: transparent;
+  
+    /* padding: 15px; */
+  
+    border-radius: 10px;
+  }
+  
+  .membership_application {
+    background: rgba(25, 24, 26);
+    color:rgb(255, 255, 255);
+    position: relative;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    overflow: hidden;
+    font-size: 1rem;
+    text-align: center;
+    padding: 2rem 0.5rem;
+  }
+  
+  .membership_application::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 0;
+    background: rgb(76, 164, 147);
+    box-shadow: 0 0 100px 50px rgb(76, 164, 147);
+  }
+  
+  .membership_application:hover {
+    background: rgb(41, 40, 42);
+  }
+  
+  .membership_application h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .membership_application h3 {
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 3;
+    color:rgb(228, 223, 223);
+  }
+  
+  .membership_application a {
+    color: rgb(255, 255, 255);
+  }
+  
+  .cancel_membership_application {
+    background: rgba(25, 24, 26);
+    color:rgb(255, 255, 255);
+    position: relative;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    overflow: hidden;
+    font-size: 1rem;
+    text-align: center;
+    padding: 2rem 0.5rem;
+  }
+  
+  .cancel_membership_application:before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 0;
+    background: rgb(76, 121, 164);
+    box-shadow: 0 0 100px 50px rgb(76, 121, 164);
+  }
+  
+  .cancel_membership_application:hover {
+    background: rgb(41, 40, 42);
+  }
+  
+  .cancel_membership_application h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .cancel_membership_application h3 {
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 3;
+    color:rgb(228, 223, 223);
+  }
+  
+  .cancel_membership_application a {
+      color: rgb(255, 255, 255);
+  }
+  
+  .three_days {
+    background: rgba(25, 24, 26);
+    color:rgb(255, 255, 255);
+    position: relative;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    overflow: hidden;
+    font-size: 1rem;
+    text-align: center;
+    padding: 2rem 0.5rem;
+  }
+  
+  .three_days::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 0;
+    background: rgb(139, 164, 76);
+    box-shadow: 0 0 100px 50px rgb(139, 164, 76);
+  }
+  
+  .three_days:hover {
+    background: rgb(41, 40, 42);
+  }
+  
+  .three_days h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .three_days h3 {
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 3;
+    color:rgb(228, 223, 223);
+  }
+  
+  .three_days a {
+    color:rgb(255, 255, 255);
+  }
+  
+  .renew_active_membership {
+    background: rgba(25, 24, 26);
+    color:rgb(255, 255, 255);
+    position: relative;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    overflow: hidden;
+    font-size: 1rem;
+    text-align: center;
+    padding: 2rem 0.5rem;
+  }
+  
+  .renew_active_membership::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 0;
+    background: rgb(164, 76, 94);
+    box-shadow: 0 0 100px 50px rgb(164, 76, 94);
+  }
+  
+  .renew_active_membership:hover {
+    background: rgb(41, 40, 42);
+  }
+  
+  .renew_active_membership h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .renew_active_membership h3{
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 3;
+    color:rgb(228, 223, 223);
+  }
+  
+  .renew_active_membership a {
+    color:rgb(255, 255, 255);
+  }
+  
+  .renew_expired_membership {
+    background: rgba(25, 24, 26);
+    color:rgb(255, 255, 255);
+    position: relative;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    overflow: hidden;
+    font-size: 1rem;
+    text-align: center;
+    padding: 2rem 0.5rem;
+  }
+  
+  
+  .renew_expired_membership::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 0;
+    background: rgb(164, 110, 76);
+    box-shadow: 0 0 100px 50px rgb(164, 110, 76);
+  }
+  
+  .renew_expired_membership:hover {
+    background: rgb(41, 40, 42);
+  }
+  
+  .renew_expired_membership h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .renew_expired_membership h3{
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 3;
+    color:rgb(228, 223, 223);
+  }
+  
+  .renew_expired_membership a {
+    color: rgb(255, 255, 255);
+  }
+  
+  .active_membership {
+    background: rgba(25, 24, 26);
+    color:rgb(255, 255, 255);
+    position: relative;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    overflow: hidden;
+    font-size: 1rem;
+    text-align: center;
+    padding: 2rem 0.5rem;
+  }
+  
+  .active_membership:before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 0;
+    background: rgb(161, 76, 164);
+    box-shadow: 0 0 100px 50px rgb(161, 76, 164);
+  }
+  
+  .active_membership:hover {
+    background: rgb(41, 40, 42);
+  }
+  
+  .active_membership h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .active_membership h3 {
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 3;
+    color:rgb(228, 223, 223);
+  }
+  
+  .active_membership a{
+    color: rgb(255, 255, 255);
+  }
+  
+  .expired_membership {
+    background: rgba(25, 24, 26);
+    color:rgb(255, 255, 255);
+    position: relative;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    overflow: hidden;
+    font-size: 1rem;
+    text-align: center;
+    padding: 2rem 0.5rem;
+  }
+  
+  .expired_membership:before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 0;
+    background: rgb(164, 76, 76);
+    box-shadow: 0 0 100px 50px rgb(164, 76, 76);
+  }
+  
+  .expired_membership:hover {
+    background: rgb(41, 40, 42);
+  }
+  
+  .expired_membership h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .expired_membership h3 {
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 3;
+    color:rgb(228, 223, 223);
+  }
+  
+  .expired_membership a {
+    color:rgb(255, 255, 255);
+  }
+  

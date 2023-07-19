@@ -1,0 +1,64 @@
+/* CSS for useredit */
+
+table tbody tr td:nth-child(1) input {
+    background: rgb(46, 46, 75);
+    color: #7d8590;
+    padding: 0.2rem 0.3rem;
+    border-radius: 8px;
+}
+table tbody tr td:nth-child(1) input, 
+table tbody tr td:nth-child(2) input,  
+table tbody tr td:nth-child(3) input{
+    background: rgb(28,28,30);
+    color: #7d8590;
+    padding: 0.2rem 0.3rem;
+    border-radius: 8px;
+}
+
+
+table tbody tr td:nth-child(4) .row select{
+    background: rgb(46, 46, 75);
+    color: #7d8590;
+    border-radius: 8px;
+    padding: 0.2rem 0.3rem;
+}
+
+table tbody tr td:nth-child(5) .row select{
+    background: rgb(46, 46, 75);
+    color: #7d8590;
+    border-radius: 8px;
+    padding: 0.125rem 0.2rem;
+}
+
+.form-group .update {
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    -webkit-border-radius: 10px;
+}
+
+.form-group .update:nth-child(1) {
+    background: rgb(46, 46, 75);
+    color: rgb(80, 144, 205);
+    margin-right: 0.3rem;
+}
+
+.form-group .update:nth-child(1):hover {
+    color: #7d8590;
+    cursor: pointer;
+}
+
+
+.form-group .update:nth-child(2) {
+    background: rgb(46, 34, 34);
+    color: rgb(80, 144, 205);
+    margin-right: 0.3rem;
+}
+
+.form-group .update:nth-child(2) a {
+    color: rgb(164, 76, 76);
+}
+
+.form-group .update:nth-child(2) a:hover {
+    color: #7d8590;
+}
+

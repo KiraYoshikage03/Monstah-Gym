@@ -1,0 +1,569 @@
+/* CSS for membership.html */
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* colors */
+  /* white = rgba(255, 255, 255, 1);
+  black = rgb(15, 15, 15);
+  dark green = rgba(33, 68, 32, 1); */
+  
+  body{
+    height: 100vh;
+    background: rgba(10, 7, 14);
+  
+    /* overflow-y: scroll; */
+  
+    display: grid;
+  
+    grid-template-columns:  0.2fr 1.6fr 0.35fr;
+    grid-template-rows: 65px 1.8fr;
+  
+    gap: 50px 40px;
+  
+    /* padding: 10px; */
+  
+    grid-template-areas:
+    "header header header"
+    "L-sidebar main-body R-sidebar";
+  }
+  
+  /* .content{
+  display: flex;
+  align-items: center;
+  } */
+
+  /* Back to top button */
+
+#backToTopBtn {
+  display: none;
+  position: fixed;
+  left: 90%;
+  z-index: 99;
+  width: 5rem;
+  height: 5rem;
+  border: none;
+  border-radius: 8px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  -ms-border-radius: 40px;
+  -o-border-radius: 40px;
+  background-color: #333;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+#backToTopBtn:hover {
+  background-color: #555;
+}
+
+#backToTopBtn i {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  
+  /* HEADER DESIGN */
+  
+  .header{
+    grid-area: header;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    background-color: rgba(10, 7, 14);
+  
+    
+  }
+  
+  .logo{
+    display: flex;
+    align-items: center;
+    background: rgba(10, 7, 14);
+  }
+  
+  .logo a{
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgb(228, 223, 223);
+    margin: 2rem 7rem 2rem 3.2rem;
+  }
+  
+  .logo img {
+    object-fit: fill;
+    width: 2rem;
+  }
+  
+  .search_box{
+    display: flex;
+    align-items: center;
+  }
+  
+  .search_box input{
+    width: 15rem;
+    padding: 0.7rem;
+    background-color: rgb(28,28,30);
+    color: rgb(228, 223, 223);
+    box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+    border-radius: 0.4vw;
+    border: none;
+    outline: none;
+    transition: .4s;
+  }
+  
+  .search_box input:hover {
+    box-shadow: 0 0 0 .15vw rgba(135, 235, 137, 0.186);
+  }
+  
+  .search_box input:focus {
+    box-shadow: 0 0 0 .15vw rgb(128, 247, 164);
+  }
+
+  .search_box button {
+    background: none;
+  }
+  
+  .search_box i{
+    padding: 0.7rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(10, 7, 14);
+  }
+  
+  .header-icons{
+    display: flex;
+    align-items: center;
+    margin-right: 5rem;
+    color: rgb(8, 46, 7);
+  }
+  
+  .header-icons i{
+    margin-right: 2rem;
+    cursor: pointer;
+  }
+  
+  .header-icons .account{
+    width: 8.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(228, 223, 223);
+    text-transform: capitalize;
+  }
+
+  .header-icons .account h4 {
+    background: rgb(43, 46, 34);
+    color: rgb(139, 164, 76);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+  }
+  
+  .fa-bell {
+    color: rgb(228, 223, 223);
+  }
+  
+  /* LEFT SIDEBAR DESIGN */
+  
+  .L-sidebar {
+    grid-area: L-sidebar;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* position: fixed;
+    height: 100%;
+    margin-top: 5\%; */
+    background: rgba(10, 7, 14);
+    border-right-style: solid;
+    border-color: rgb(32, 32, 32);
+  }
+  
+  nav {
+    background: transparent;
+    padding: 0.313rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .L-sidebar-nav span {
+    font-size: 1.5rem;
+    color: white;
+    margin: 0 3rem 1rem;
+  }
+  
+  .L-sidebar-nav a {
+    width: 100%;
+    padding: 0.8rem 2.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: white;
+    line-height: 2.5;
+  }
+
+  .L-sidebar nav a i {
+    padding-right: 0.9rem;
+    text-align: center;
+  }
+  
+  .links {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .links a {
+    font-size: 13px;
+  }
+  
+  .L-sidebar-nav a:hover {
+    background: #4a524c;
+  }
+  
+  .L-sidebar-nav .active{
+    border-left: 2px solid #4e5c52;
+  }
+  
+  /* .balance .icon{
+    color: #fff;
+    font-size: 20px;
+    border-radius: 6px;
+    margin-right: 1rem;
+    padding: 1rem;
+    background: rgb(54, 7, 223);
+  } */
+  
+  /* RIGHT SIDEBAR DESIGN */
+
+.R-sidebar{
+  grid-area: R-sidebar;
+  padding: 0 0.5rem;
+}
+
+.R-sidebar-user{
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.R-sidebar-user h4{
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.R-sidebar-user .balance{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.R-sidebar .R-sidebar-user span {
+  font-size: 0.9rem;
+  color: #7d8590;
+  line-height: 2;
+  
+}
+
+  .balance .info h5 {
+    font-size: 16px;
+    color: white;
+  }
+  
+  .balance span {
+    font-size: .75rem;
+    color: rgb(228, 223, 223);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* .balance .info i{
+    margin-right: 48px;
+  } */
+  
+  /* MAIN  BODY DESIGN */
+  
+  .main-body {
+    grid-area: main-body;
+    display: grid;
+    grid-template-rows: repeat(2, 0.3fr);
+    background-color: rgba(10, 7, 14);
+    height: 100vh;
+  }
+
+  .top-card {
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    grid-template-rows: repeat(2, 0.5fr);
+    grid-gap: 1rem 1.2rem;
+    
+  }
+
+  .card_title {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .card_title h4 {
+    color: rgb(28,28,30); 
+  }
+
+  .welcome_box {
+    grid-column: 1 / span 2;
+    background-image: url("../files/membership_dashboard_welcome.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 23rem;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    object-fit: fill;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 10rem 3rem;
+    text-align: center;
+  }
+
+  .welcome_box h3 {
+    font-size: 2rem;
+  }
+
+  .welcome_box button {
+    margin: 1rem 0;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    background-color: rgb(28,28,30);
+  }
+
+  .welcome_box a {
+    color: rgb(213, 216, 213);
+  }
+  
+  .welcome_box a:hover {
+    color: rgb(161, 164, 161);
+  }
+
+  /* Clock */
+
+.clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    box-shadow: 15px 15px 30px rgb(25, 25, 25),
+    -15px -15px 30px rgb(60, 60, 60);
+    font-family: 'Poppins', sans-serif;
+    color:rgb(255, 255, 255);
+    text-align: center;
+    height: 17.05rem;
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+}
+
+.hms {
+    font-size: 48pt;
+    font-weight: 200;
+}
+
+.ampm {
+    font-size: 18pt;
+}
+
+.date {
+    font-size: 10pt;
+    color: #7d8590;
+}
+  
+  .membership_application {
+    background: rgba(25, 24, 26);
+    color:rgb(255, 255, 255);
+    background-image: url("../files/membership_dashboard_bpic.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 17.05rem;
+    /* object-fit: cover;
+    object-position: center; */
+    border-radius: 8px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 1rem 0;
+  }
+  
+  .membership_application:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+.membership_application_table {
+  color:rgb(228, 223, 223);
+  padding: 0.625rem;
+  border-radius: 8px;
+  margin: 1rem 0 1rem 0;
+  
+}
+
+.mem_table h2 {
+  font-size: 2rem;
+}
+
+.table-title{
+  margin: 1rem 0;
+}
+
+.table-title span{
+  background: #e0e0e0;
+  color:rgb(25, 25, 25);
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 40px;
+  -ms-border-radius: 40px;
+  -o-border-radius: 40px;
+}
+
+table {
+  line-height: 2;
+  border: 1px solid rgb(74, 75, 74);
+  border-collapse: collapse;
+}
+
+table thead tr th{
+  color: rgb(228, 223, 223);
+  border-bottom: 1px solid rgb(74, 75, 74);
+}
+
+table tbody {
+  color: #7d8590;
+}
+
+table tbody tr td {
+  padding: 1.2rem;
+}
+
+table tbody tr td:nth-child(5) button{
+  background: rgb(46, 46, 75);
+  padding: 0.2rem 0.3rem;
+  border-radius: 8px;;
+  text-align: right;
+}
+
+table tbody tr td:nth-child(5) button a {
+  padding: 0 0.2rem;
+}
+
+table tbody tr td:nth-child(5) button:nth-child(1) {
+  background: rgb(34, 39, 46);
+}
+
+table tbody tr td:nth-child(5) button:nth-child(1) a {
+  color: rgb(80, 144, 205);
+}
+
+
+table tbody tr td:nth-child(5) button:nth-child(2) {
+  background: rgb(34, 46, 34);
+}
+
+
+table tbody tr td:nth-child(5) button:nth-child(2) a {
+  color: rgb(76, 164, 147);
+}
+
+table tbody tr td:nth-child(5) button:nth-child(3) {
+  background: rgb(46, 34, 34);
+}
+
+
+table tbody tr td:nth-child(5) button:nth-child(3) a {
+  color: rgb(164, 76, 76);
+}
+
+table tbody tr td:nth-child(5) button a:hover {
+  color: #7d8590;
+  transition: color 0.3s;
+}
+
+button a {
+  background: transparent;
+}
+ 
+table tbody tr td:nth-child(7) {
+  text-align: center;
+  margin: 1rem;
+}
+
+table tbody tr td:nth-child(7) button {
+  padding: 0 0.4rem;
+  border-radius: 8px;
+}
+
+table tbody tr td:nth-child(7) button:nth-child(1) {
+  background: rgb(46, 46, 75);
+}
+
+table tbody tr td:nth-child(7) button:nth-child(1) a {
+  color: rgb(80, 144, 205);
+}
+
+table tbody tr td:nth-child(7) button:nth-child(1) a:hover {
+  color: #7d8590;
+  transition: color 0.3s;
+}
+
+table tbody tr td:nth-child(7) button:nth-child(2) {
+  background: rgb(34, 46, 34);
+}
+
+table tbody tr td:nth-child(7) button:nth-child(2) a {
+  color: rgb(76, 164, 147);
+}
+
+table tbody tr td:nth-child(7) button:nth-child(2) a:hover {
+  color: #7d8590;
+  transition: color 0.3s;
+}
+
+
+form button {
+  background: rgb(43, 46, 34);
+  color: rgb(139, 164, 76);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  -ms-border-radius: 40px;
+  -o-border-radius: 40px;
+}
+
+form button:hover {
+  cursor: pointer;
+  background: rgb(70, 76, 52);
+}
+
+.logo .search_box input{
+  opacity: 0;
+}
+
+.logo .search_box button{
+  opacity: 0;
+}

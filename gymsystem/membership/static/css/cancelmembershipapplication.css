@@ -1,0 +1,15 @@
+/* CSS for cancelmembershipapplication.html */
+
+.table-title span {
+    background: rgb(43, 46, 34);
+    color: rgb(139, 164, 76);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+  }
+
+table tbody tr td:nth-child(5) button:hover {
+    color: #7d8590;
+    cursor: pointer;
+}
+  
+  

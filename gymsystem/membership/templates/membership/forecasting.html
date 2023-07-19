@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- user page - admin landing -->
+        <title>Admin</title>
+
+        <!-- External CSS -->
+        <link rel="stylesheet" href="../../static/css/forecasting2.css">
+        <!-- Fonts (Google)-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+
+        <!-- Icons (Font Awesome) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        
+        <!-- Icons (Boxicon) -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+        <!-- ApexChart JS -->
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+        <style>
+            .forecast-label {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 5px;
+            }
+        
+            .sort-buttons {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            
+            .sort-buttons a {
+                margin-right: 5px;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+    {% if request.user.is_authenticated %}
+            <!-- HEADER -->
+            <header class="header">
+
+                <div class="logo">
+                    <a href="/adminpage"><img src="../../static/files/monster-logo.png" alt="logo">Admin</a>
+                </div>
+
+                <div class="header-icons">
+                    <div class="account">
+                    <h4>{{user.user_name}}</h4>
+                    </div>
+                </div>
+            </header>
+                
+
+            <!-- LEFT SIDEBAR (categories) -->
+            <section class="L-sidebar">
+                <nav class="L-sidebar-nav">
+                    <span>Dashboard</span>
+                            <!-- nagf fle not found kaya ganyan ko muna link -->
+                            <a href="/adminpage"><i class='bx bx-user'></i>Users</a>
+                            <a href="/membership"><i class='bx bx-crown' ></i>Membership</a>
+                            <a href="/forecasting" class="active"><i class='bx bx-bar-chart-alt'></i>Forecasting</a>
+                            <a href="/signout"><i class='bx bx-log-out'></i>Signout</a>
+                            <!-- di ko ma-connect yung sign out page?? -->
+                </nav>
+            </section>
+
+            <!-- MAIN BODY -->
+            <main class="main-body">
+
+                <!-- USERS -->
+                <!-- <div class="top-card">
+                    <h2>Upload CSV File</h2>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" name="csv_file">
+                        <input type="submit" value="Upload">
+                    </form>                    
+                </div> -->
+
+                <!-- Banner1 -->
+                <!-- <div class="banner1_container">
+                        <img src="../../static/files/banner1.png" alt="forecasting_bg1">
+                        <span>See Monthly Record for 2020-2023 and Forecasting for 2023-2026</span>
+                        <button><a href="" onclick="openModal()">Click This!</a></button>
+                </div> -->
+                
+                <!-- GRAPH 1 and TABLE 1 -->
+                <!-- <div class="graph1_container">
+                    <div class="graph1">
+                        <h2>Monthly Records Count for Years 2020-2023</h2>
+                        <img src="data:image/png;base64,{{ graph_file1 }}" alt="Graph">
+                    </div>
+                    <div class="graph2">
+                        <h2>Forecast for Years 2023-2026</h2>
+                        <img src="data:image/png;base64,{{ graph_file2 }}" alt="Graph">
+                    </div>
+                </div> -->
+
+                </head>
+                <body>
+
+                    <!-- BANNER 1 -->
+                  <div class="container">
+                    <div class="banner1_container">
+                      <img src="../../static/files/banner1.png" alt="forecasting_bg1">
+                      <span>Monthly Records for 2020-2023 and Forecasting for 2023-2026</span>
+                      <button class="button" onclick="openModal()">Click This!</button>
+                    </div>
+                
+                    <div id="myModal" class="modal">
+                      <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <div class="graph1">
+                            <h2>Monthly Records Count for Years 2020-2023</h2>
+                          <img src="data:image/png;base64,{{ graph_file1 }}" alt="Graph">
+                        </div>
+                        <div class="graph2">
+                            <h2>Forecast for Years 2023-2026</h2>
+                          <img src="data:image/png;base64,{{ graph_file2 }}" alt="Graph">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <!-- BANNER 2 -->
+                  <div class="container">
+                    <div class="banner2_container">
+                      <img src="../../static/files/banner2.png" alt="forecasting_bg1">
+                      <span>Count for Data 2020-2023 and Forecasted Counts for Years 2023-2026</span>
+                      <button class="button2" onclick="openModal2()">Click This!</button>
+                    </div>
+                
+                    <div id="myModal2" class="modal2">
+                      <div class="modal-content2">
+                        <span class="close2" onclick="closeModal2()">&times;</span>
+                        <div class="table1_container">
+                            <h2>Count for Data 2020-2023</h2>
+                            <table>
+                                <tr>
+                                    <th>Months</th>
+                                    <th>Data 2020</th>
+                                    <th>Data 2021</th>
+                                    <th>Data 2022</th>
+                                    <th>Data 2023</th>
+                                </tr>
+                                {% for item in count_data1 %}
+                                <tr>
+                                    <td>{{ item.0 }}</td>
+                                    <td>{{ item.1 }}</td>
+                                    <td>{{ item.2 }}</td>
+                                    <td>{{ item.3 }}</td>
+                                    <td>{{ item.4 }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div class="table2_container">
+                            <h2>Forecasted Counts for Years 2023-2026</h2>
+                            <table>
+                                <tr>
+                                    <th>Months</th>
+                                    <th>Forecast 2023</th>
+                                    <th>Forecast 2024</th>
+                                    <th>Forecast 2025</th>
+                                    <th>Forecast 2026</th>
+                                </tr>
+                                {% for item in count_data2 %}
+                                <tr>
+                                    <td>{{ item.0 }}</td>
+                                    <td>{{ item.1 }}</td>
+                                    <td>{{ item.2 }}</td>
+                                    <td>{{ item.3 }}</td>
+                                    <td>{{ item.4 }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        <!-- Display the strongest month and count for each year -->
+                        {% for data in strongest_data %}
+                        <p>Strongest month in Forecast {{ data.0 }}: {{ data.1 }} with count {{ data.2 }}</p>
+                        {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- BANNER 3 -->
+                  <div class="container">
+                    <div class="banner3_container">
+                      <img src="../../static/files/banner3.png" alt="forecasting_bg1">
+                      <span>Yearly Records Count for Years 2020-2026</span>
+                      <button class="button3" onclick="openModal3()">Click This!</button>
+                    </div>
+                
+                    <div id="myModal3" class="modal3">
+                      <div class="modal-content3">
+                        <span class="close3" onclick="closeModal3()">&times;</span>
+                        <div class="table3_container">
+                            <h2>Yearly Records Count for Years 2020-2026</h2>
+                            <img src="data:image/png;base64,{{ graph_file3 }}" alt="Graph">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </main>
+	{%  endif %}
+    <script src="../../static/js/forecasting.js"></script>
+    </body>
+</html>

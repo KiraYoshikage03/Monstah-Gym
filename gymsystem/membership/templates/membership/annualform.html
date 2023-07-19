@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annual Membership</title>
+    <!-- Bootsrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- CSS File -->
+	<link rel="stylesheet" href="../../static/css/monthlyform.css">
+</head>
+<body>
+    <!-- MultiStep Form -->
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form id="msform" action="/annualform/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- progressbar -->
+            <ul id="progressbar">
+                <li class="active">Personal Details</li>
+                <li>Attachments</li>
+                <li>Finish</li>
+            </ul>
+            <!-- fieldsets -->
+            <fieldset>
+                <h2 class="fs-title">Personal Details</h2>
+                <h3 class="fs-subtitle">Tell us something more about you</h3>
+                <input type="text" class="phcolor" name="full_name" placeholder="Full Name" required/>
+                <input type="number" class="phcolor" name="age" placeholder="Age" required/>
+                <input type="text" class="phcolor" name="address" placeholder="Address" required/>
+                <input type="number" class="phcolor" name="contact_no" placeholder="Contact no. (optional)"/>
+                <input type="number" class="phcolor" name="weight" placeholder="Weight in kg" required/>
+                <input type="number" class="phcolor" name="height" placeholder="Height in cm" required/>
+                <h2 class="fs-title">Emergency Contact Info</h2>
+                <input type="text" class="phcolor" name="em_fullname" placeholder="Full Name" required/>
+                <input type="text" class="phcolor" name="relationship" placeholder="Relationship" required/>
+                <input type="number" class="phcolor" name="em_contactno" placeholder="Contact no." required/>
+                <input type="email" class="phcolor" name="em_email" placeholder="Email (optional)"/>
+                <h2 class="fs-title">Upload Your Photo</h2>
+                <h3 class="fs-subtitle">Please upload your 2x2 picture</h3>
+                <input type="file" name="photo" placeholder="Choose File" required/>
+                <input type="button" name="next" class="next action-button" value="Next"/>
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">Attachments</h2>
+                <h3 class="fs-subtitle">Scan the GCASH qr code to pay. Don't forget to screenshot and attach the receipt.</h3>
+                <img src="../../static/files/GCASH.png" width="400px" height="600px" alt="Owner GCASH acount">
+                <h3 class="fs-subtitle">PRICE: ₱6000.00</h3>
+                <input type="file" name="file" placeholder="Choose File" required/>
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input type="button" name="next" class="next action-button" value="Next"/>
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">Finish</h2>
+                <h3 class="fs-subtitle">Thank you for availing annual membership. Please wait till we verify your purchase.</h3>
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+            </fieldset>
+        </form>
+    </div>
+</div>
+ <!-- JS -->
+<!-- <script src="../../static/js/monthlyform.js"></script> -->
+<script>
+    //jQuery time
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var left, opacity, scale; //fieldset properties which we will animate
+    var animating; //flag to prevent quick multi-click glitches
+
+    $(".next").click(function(){
+        if(animating) return false;
+        animating = true;
+
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
+
+        //activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function(now, mx) {
+                //as the opacity of current_fs reduces to 0 - stored in "now"
+                //1. scale current_fs down to 80%
+                scale = 1 - (1 - now) * 0.2;
+                //2. bring next_fs from the right(50%)
+                left = (now * 50)+"%";
+                //3. increase opacity of next_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({
+            'transform': 'scale('+scale+')',
+            'position': 'absolute'
+          });
+                next_fs.css({'left': left, 'opacity': opacity});
+            },
+            duration: 800,
+            complete: function(){
+                current_fs.hide();
+                animating = false;
+            },
+            //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+
+    $(".previous").click(function(){
+        if(animating) return false;
+        animating = true;
+
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
+
+        //de-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+        //show the previous fieldset
+        previous_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function(now, mx) {
+                //as the opacity of current_fs reduces to 0 - stored in "now"
+                //1. scale previous_fs from 80% to 100%
+                scale = 0.8 + (1 - now) * 0.2;
+                //2. take current_fs to the right(50%) - from 0%
+                left = ((1-now) * 50)+"%";
+                //3. increase opacity of previous_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({'left': left});
+                previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+            },
+            duration: 800,
+            complete: function(){
+                current_fs.hide();
+                animating = false;
+            },
+            //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+</script>
+</body>
+</html>

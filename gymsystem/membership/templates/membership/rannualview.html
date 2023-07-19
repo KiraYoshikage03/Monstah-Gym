@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- membership page -->
+        <title>Admin</title>
+
+        <!-- External CSS -->
+        <link rel="stylesheet" href="../../static/css/membershipapplication.css">  
+        <link rel="stylesheet" href="../../static/css/rmonthlyview.css">
+        <!-- Fonts (Google)-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+
+        <!-- Icons (Font Awesome) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+        <!-- Icons (Boxicon) -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+
+    <body>
+    <!-- From here same lang html and css sa adminpg.html -->
+
+        <!-- di ko sure how this work so i opted to make it a comment muna -->
+        {% if request.user.is_authenticated %}
+        <!-- <div id="content", name="content"></div> = ito yung naka wrap sa buong content -->
+
+            <!-- HEADER -->
+            <header class="header">
+                
+                <div class="logo">
+                    <a href="/adminpage"><img src="../../static/files/monster-logo.png" alt="logo">Admin</a>
+                    <form method="post" action="{% url 'membershipsearch' %}">
+                        {% csrf_token %}
+                        <div class="search_box">
+                            <input type="search" name="search" placeholder="Search Unique ID or Name">
+                            <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="header-icons">
+                    <div class="account">
+                    <h4>{{user.user_name}}</h4>
+                    </div>
+                </div>
+
+            </header>
+
+
+            <!-- LEFT SIDEBAR (categories) -->
+            <section class="L-sidebar">
+                <nav class="L-sidebar-nav">
+                    <span>Dashboard</span>
+                            <!-- nagf fle not found kaya ganyan ko muna link -->
+                            <a href="/adminpage"><i class='bx bx-user'></i>Users</a>
+                            <a href="/membership" class="active"><i class='bx bx-crown' ></i>Membership</a>
+                            <a href="/forecasting"><i class='bx bx-bar-chart-alt'></i>Forecasting</a>
+                            <a href="/signout"><i class='bx bx-log-out'></i>Signout</a>
+                            <!-- di ko ma-connect yung sign out page?? -->
+                </nav>
+            </section>
+
+    <!-- To here same lang html and css sa adminpg.html -->
+
+
+    <!-- RIGHT SIDBAR (newly created user) -->
+            <section class="R-sidebar">
+                <div class="R-sidebar-user">
+                    <h4>New Application</h4>
+                    <span>Monthly Membership</span>
+                    {% for data in monthlynew_application %}
+                    <div class="balance">
+                    <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accepted</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for data in nvmonthlynew_application %}
+                    <div class="balance">
+                    <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pending</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+                    
+                    <span>Annual Membership</span>
+                    {% for data in annualnew_application %}
+                    <div class="balance">
+                    <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accepted</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for data in nvannualnew_application %}
+                    <div class="balance">
+                        <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pending</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+
+                    <span>Custom Membership</span>
+                    {% for data in customnew_application %}
+                    <div class="balance">
+                    <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accepted</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for data in nvcustomnew_application %}
+                    <div class="balance">
+                        <i><img width="50px" height="50px" src="/media/{{ data.photo }}" alt="Photo" ></i>
+                    <div class="info">
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</h5>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pending</span>
+                    </div>
+                    </div>
+                    {% endfor %}
+            
+                </div>
+            </section>
+
+
+            <!-- MAIN BODY -->
+            <main class="main-body">
+
+                <!-- USERS - MEMBERSHIPS -->
+                <div class="top-card">
+                    <div class="user-card">
+                        <h1>Welcome to Membership</h1>
+			            <span>This is where the admin accept/delete the membership application of the users.</span> 
+                    </div>
+                    
+                </div>
+
+                <!-- ACCOUNTS -->
+                <div class="bottom-card">
+                    
+                    
+                    <!-- APPLICATIONS -->
+                    <div class="container">
+                        <h2>Renew Annual Membership</h2>
+						
+                        <!-- Monthly Application -->
+                        <div class="table-title">
+
+                            <h4>View {{annual.email}} information</h4>
+
+                        </div>
+                        
+
+                        <table>
+                            <thead>
+                                <tr>
+                                <div class="list1">
+								<th>#</th>
+								<th>Unique ID</th>
+								<th>Email</th>
+								<th>Full Name</th>
+								<th>Age</th>
+								<th>Address</th>
+								<th>Contact No.</th>
+								<th>Weight</th>
+								<th>Height</th>
+								<th>Em Fullname</th>
+								<th>Relationship</th>
+								<th>Em Contact No.</th>
+								<th>Em Email</th>
+								<th>Price</th>
+								<th>Receipt</th>
+								<th>Photo</th>
+								<th>Renew Price</th>
+								<th>Renew Receipt</th>
+								<th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{annual.id}}</td>
+                                    <td>{{annual.unique_id}}</td>
+									<td>{{annual.email}}</td>
+									<td>{{annual.full_name}}</td>
+									<td>{{annual.age}}</td>
+									<td>{{annual.address}}</td>
+									<td>{{annual.contact_no}}</td>
+									<td>{{annual.weight}}</td>
+									<td>{{annual.height}}</td>
+									<td>{{annual.em_fullname}}</td>
+									<td>{{annual.relationship}}</td>
+									<td>{{annual.em_contactno}}</td>
+									<td>{{annual.em_email}}</td>
+									<td>₱{{annual.price}}.00</td>
+									<td><img width="300px" height="470px" src="/media/{{ annual.file }}" alt="Receipt" ></td>
+									<td><img width="200px" height="200px" src="/media/{{ annual.photo }}" alt="Photo" ></td>
+                                    <td>₱{{annual.renew_price}}.00</td>
+                                    <td><img width="300px" height="470px" src="/media/{{ annual.renew }}" alt="Renew_Receipt" ></td>
+                                    <td>
+                                        <button type="button">
+											<a href="/membership"> Go Back</a>
+										</button>
+                                    </td>
+                                    </div>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                        
+                    
+                </div>
+                
+            </main>
+
+		{%  endif %}
+    </body>
+</html>
