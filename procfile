@@ -1,1 +1,1 @@
-web: gunicorn gymsystem.wsgi --log-file-
+web: gunicorn gymsystem.wsgi:application --log-file-
